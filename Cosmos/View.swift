@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -23,7 +23,7 @@ extension NSValue {
     /// Initializes an NSValue with a Point
     /// - parameter point: a Point
     convenience init(Point point: Point) {
-        self.init(CGPoint: CGPoint(point))
+        self.init(cgPoint: CGPoint(point))
     }
 }
 
@@ -36,7 +36,7 @@ public class View: NSObject {
     /// - returns: A Double value representing the cumulative rotation of the view, measured in Radians.
     public var rotation: Double {
         get {
-            if let number = animatableLayer.valueForKeyPath(Layer.rotationKey) as? NSNumber {
+            if let number = animatableLayer.value(forKeyPath: Layer.rotationKey) as? NSNumber {
                 return number.doubleValue
             }
             return  0.0
@@ -79,14 +79,14 @@ public class View: NSObject {
 
     public init(copyView: View) {
         //If there is a scale transform we need to undo that
-        let t = CGAffineTransformInvert(copyView.view.transform)
+        let t = copyView.view.transform.inverted()
         let x = sqrt(t.a * t.a + t.c * t.c)
         let y = sqrt(t.b * t.b + t.d * t.d)
-        let s = CGAffineTransformMakeScale(x, y)
-        let frame = Rect(CGRectApplyAffineTransform(copyView.view.frame, s))
+        let s = CGAffineTransform(scaleX: x, y: y)
+        let frame = Rect(copyView.view.frame.applying(s))
         super.init()
         view.frame = CGRect(frame)
-        copyViewStyle(copyView)
+        copyViewStyle(viewToCopy: copyView)
     }
 
     public func copyViewStyle(viewToCopy: View) {
@@ -192,12 +192,12 @@ public class View: NSObject {
     }
 
     /// Returns the receiver's frame width. Animatable.
-    public dynamic var width: Double {
+    @objc public dynamic var width: Double {
         return Double(bounds.size.width)
     }
 
     /// Returns the receiver's frame height. Animatable.
-    public dynamic var height: Double {
+    @objc public dynamic var height: Double {
         return Double(bounds.size.height)
     }
 
@@ -220,7 +220,7 @@ public class View: NSObject {
     }
 
     /// Returns the receiver's opacity. Animatable.
-    public dynamic var opacity: Double {
+    @objc public dynamic var opacity: Double {
         get {
             return Double(view.alpha)
         }
@@ -232,10 +232,10 @@ public class View: NSObject {
     /// Returns true if the receiver is hidden, false if visible.
     public var hidden: Bool {
         get {
-            return view.hidden
+            return view.isHidden
         }
         set {
-            view.hidden = newValue
+            view.isHidden = newValue
         }
     }
 
@@ -267,7 +267,7 @@ public class View: NSObject {
     ///  The layer’s position on the z axis. Animatable.
     ///  The default value of this property is 0. Changing the value of this property changes the the front-to-back ordering of layers onscreen. This can affect the visibility of layers whose frame rectangles overlap.
     ///  The value of this property is measured in points.
-    public dynamic var zPosition: Double {
+    @objc public dynamic var zPosition: Double {
         get {
             return Double(self.layer!.zPosition)
         } set {
@@ -295,7 +295,7 @@ public class View: NSObject {
     /// Returns true if the receiver accepts touch events.
     public var interactionEnabled: Bool = true {
         didSet {
-            self.view.userInteractionEnabled = interactionEnabled
+            self.view.isUserInteractionEnabled = interactionEnabled
         }
     }
 
@@ -309,7 +309,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a tap gesture.
     /// - returns: A UITapGestureRecognizer that can be customized.
-    public func addTapGestureRecognizer(action: TapAction) -> UITapGestureRecognizer {
+    public func addTapGestureRecognizer(action: @escaping TapAction) -> UITapGestureRecognizer {
         let gestureRecognizer = UITapGestureRecognizer(view: self.view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -324,7 +324,7 @@ public class View: NSObject {
     /// }
     /// - parameter action: A block of code to be executed when the receiver recognizes a pan gesture.
     /// - returns: A UIPanGestureRecognizer that can be customized.
-    public func addPanGestureRecognizer(action: PanAction) -> UIPanGestureRecognizer {
+    public func addPanGestureRecognizer(action: @escaping PanAction) -> UIPanGestureRecognizer {
         let gestureRecognizer = UIPanGestureRecognizer(view: self.view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -339,7 +339,7 @@ public class View: NSObject {
     /// }
     /// - parameter action: A block of code to be executed when the receiver recognizes a pinch gesture.
     /// - returns: A UIPinchGestureRecognizer that can be customized.
-    public func addPinchGestureRecognizer(action: PinchAction) -> UIPinchGestureRecognizer {
+    public func addPinchGestureRecognizer(action: @escaping PinchAction) -> UIPinchGestureRecognizer {
         let gestureRecognizer = UIPinchGestureRecognizer(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -355,7 +355,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a rotation gesture.
     /// - returns: A UIRotationGestureRecognizer that can be customized.
-    public func addRotationGestureRecognizer(action: RotationAction) -> UIRotationGestureRecognizer {
+    public func addRotationGestureRecognizer(action: @escaping RotationAction) -> UIRotationGestureRecognizer {
         let gestureRecognizer = UIRotationGestureRecognizer(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -371,7 +371,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a longpress gesture.
     /// - returns: A UILongPressGestureRecognizer that can be customized.
-    public func addLongPressGestureRecognizer(action: LongPressAction) -> UILongPressGestureRecognizer {
+    public func addLongPressGestureRecognizer(action: @escaping LongPressAction) -> UILongPressGestureRecognizer {
         let gestureRecognizer = UILongPressGestureRecognizer(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -403,7 +403,7 @@ public class View: NSObject {
     /// - parameter action: A block of code to be executed when the receiver recognizes a screen edge pan gesture.
     /// - returns: A UIScreenEdgePanGestureRecognizer that can be customized.
     public func addScreenEdgePanGestureRecognizer(action: ScreenEdgePanAction) -> UIScreenEdgePanGestureRecognizer {
-        let gestureRecognizer = UIScreenEdgePanGestureRecognizer(view: view, action: action)
+        let gestureRecognizer =  UIScreenEdgePanGestureRecognizer.init(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
     }
@@ -424,7 +424,7 @@ public class View: NSObject {
         } else if let v = subview as? View {
             view.addSubview(v.view)
         } else {
-            fatalError("Can't add subview of class `\(subview.dynamicType)`")
+            fatalError("Can't add subview of class `\(type(of: subview))`")
         }
     }
 
@@ -441,7 +441,7 @@ public class View: NSObject {
     /// - parameter subviews:	An array of UIView or View objects to be added to the receiver.
     public func add<T>(subviews: [T?]) {
         for subv in subviews {
-            self.add(subv)
+            self.add(subview: subv)
         }
     }
 
@@ -462,7 +462,7 @@ public class View: NSObject {
         } else if let v = subview as? View {
             v.view.removeFromSuperview()
         } else {
-            fatalError("Can't remove subview of class `\(subview.dynamicType)`")
+            fatalError("Can't remove subview of class `\(type(of: subview))`")
         }
     }
 
@@ -489,7 +489,7 @@ public class View: NSObject {
         } else if let v = subview as? View {
             view.sendSubviewToBack(v.view)
         } else {
-            fatalError("Can't operate on subview of class `\(subview.dynamicType)`")
+            fatalError("Can't operate on subview of class `\(type(of: subview))`")
         }
     }
 
@@ -501,7 +501,7 @@ public class View: NSObject {
         } else if let v = subview as? View {
             view.bringSubviewToFront(v.view)
         } else {
-            fatalError("Can't operate on subview of class `\(subview.dynamicType)`")
+            fatalError("Can't operate on subview of class `\(type(of: subview))`")
         }
     }
 
@@ -519,7 +519,7 @@ public class View: NSObject {
     /// - parameter point: A `Point` to examine
     /// - returns: `true` if the point is within the object's frame, otherwise `false`.
     public func hitTest(point: Point) -> Bool {
-        return CGRectContainsPoint(CGRect(bounds), CGPoint(point))
+        return CGRect(bounds).contains(CGPoint(point))
     }
 
     /// Checks if a specified point, from another view, falls within the frame of the receiver.
@@ -536,8 +536,8 @@ public class View: NSObject {
     /// - parameter from: The view whose coordinate system the point is to be converted from
     /// - returns: `true` if the point is within the object's frame, otherwise `false`.
     public func hitTest(point: Point, from: View) -> Bool {
-        let p = convert(point, from:from)
-        return hitTest(p)
+        let p = convert(point: point, from:from)
+        return hitTest(point: p)
     }
 
     //MARK: – Convert
@@ -551,7 +551,7 @@ public class View: NSObject {
     /// - parameter from: The view whose coordinate system the point is to be converted from
     /// - returns: A `Point` whose values have been translated into the receiver's coordinate system.
     public func convert(point: Point, from: View) -> Point {
-        return Point(view.convertPoint(CGPoint(point), fromCoordinateSpace: from.view))
+        return Point(view.convert(CGPoint(point), from: from.view.coordinateSpace)))
     }
 
     //MARK: - Positioning

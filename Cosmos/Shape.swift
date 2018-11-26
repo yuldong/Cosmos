@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -31,8 +31,8 @@ public class Shape: View {
             return ShapeLayer.self
         }
 
-        override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-            if CGPathContainsPoint(shapeLayer.path, nil, point, shapeLayer.fillRule == kCAFillRuleNonZero ? false : true) {
+        override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+            if shapeLayer.path!.contains(point, using: .winding) {
                 return self
             }
             return nil
@@ -60,7 +60,7 @@ public class Shape: View {
         lineCap = .Round
         lineJoin = .Round
 
-        let image = UIImage.createWithColor(UIColor.clearColor(), size: CGSize(width: 1, height: 1)).CGImage
+        let image = UIImage.createWithColor(color: UIColor.clear, size: CGSize(width: 1, height: 1)).cgImage
         shapeLayer.contents = image
     }
 
@@ -86,7 +86,7 @@ public class Shape: View {
         lineCap = .Round
         lineJoin = .Round
 
-        let image = UIImage.createWithColor(UIColor.clearColor(), size: CGSize(width: 1, height: 1)).CGImage
+        let image = UIImage.createWithColor(color: UIColor.clear, size: CGSize(width: 1, height: 1)).cgImage
         shapeLayer.contents = image
     }
 
@@ -94,11 +94,11 @@ public class Shape: View {
     /// - parameter shape: A Shape around which the new shape is created.
     public convenience init(copy original: Shape) {
         //If there is a scale transform we need to undo that
-        let t = CGAffineTransformInvert(original.view.transform)
+        let t = original.view.transform.inverted()
         let x = sqrt(t.a * t.a + t.c * t.c)
         let y = sqrt(t.b * t.b + t.d * t.d)
-        let s = CGAffineTransformMakeScale(x, y)
-        self.init(frame: Rect(CGRectApplyAffineTransform(original.view.frame, s)))
+        let s = CGAffineTransform(scaleX: x, y: y)
+        self.init(frame: Rect(original.view.frame.applying(s)))
 
         let disable = ShapeLayer.disableActions
         ShapeLayer.disableActions = true
@@ -116,7 +116,7 @@ public class Shape: View {
         self.miterLimit = original.miterLimit
         updatePath()
         adjustToFitPath()
-        copyViewStyle(original)
+        copyViewStyle(viewToCopy: original)
         ShapeLayer.disableActions = disable
     }
 
@@ -133,12 +133,12 @@ public class Shape: View {
             var b = bounds
             b.origin.y = self.height - b.origin.y
 
-            UIGraphicsBeginImageContextWithOptions(CGSize(b.size), false, UIScreen.mainScreen().scale)
+            UIGraphicsBeginImageContextWithOptions(CGSize(b.size), false, UIScreen.main.scale)
             let context = UIGraphicsGetCurrentContext()
 
             CGContextDrawTiledImage(context, CGRect(b), gim)
             let uiimage = UIGraphicsGetImageFromCurrentImageContext()
-            let uicolor = UIColor(patternImage: uiimage)
+            let uicolor = UIColor(patternImage: uiimage!)
             fillColor = Color(uicolor)
             UIGraphicsEndImageContext()
         }
@@ -159,7 +159,7 @@ public class Shape: View {
         if shapeLayer.path == nil {
             return
         }
-        view.bounds = CGPathGetPathBoundingBox(shapeLayer.path)
+        view.bounds = shapeLayer.path!.boundingBox
         view.frame = view.bounds
     }
 
@@ -192,7 +192,7 @@ public class Shape: View {
             }
         }
         set(color) {
-            shapeLayer.strokeColor = color?.CGColor
+            shapeLayer.strokeColor = color?.color
         }
     }
 
@@ -206,7 +206,7 @@ public class Shape: View {
             }
         }
         set(color) {
-            shapeLayer.fillColor = color?.CGColor
+            shapeLayer.fillColor = color?.color
         }
     }
 
@@ -214,9 +214,9 @@ public class Shape: View {
     public var fillRule: FillRule {
         get {
             switch shapeLayer.fillRule {
-            case kCAFillRuleNonZero:
+            case CAShapeLayerFillRule.nonZero:
                 return .NonZero
-            case kCAFillRuleEvenOdd:
+            case CAShapeLayerFillRule.evenOdd:
                 return .EvenOdd
             default:
                 return .NonZero
@@ -225,9 +225,9 @@ public class Shape: View {
         set(fillRule) {
             switch fillRule {
             case .NonZero:
-                shapeLayer.fillRule = kCAFillRuleNonZero
+                shapeLayer.fillRule = CAShapeLayerFillRule.nonZero
             case .EvenOdd:
-                shapeLayer.fillRule = kCAFillRuleEvenOdd
+                shapeLayer.fillRule = CAShapeLayerFillRule.evenOdd
             }
         }
     }
@@ -236,7 +236,7 @@ public class Shape: View {
     /// - returns: A Double value representing the cumulative rotation of the view, measured in Radians.
     public override var rotation: Double {
         get {
-            if let number = shapeLayer.valueForKeyPath(Layer.rotationKey) as? NSNumber {
+            if let number = shapeLayer.value(forKeyPath: Layer.rotationKey) as? NSNumber {
                 return number.doubleValue
             }
             return  0.0
@@ -273,11 +273,11 @@ public class Shape: View {
     public var lineCap: LineCap {
         get {
             switch shapeLayer.lineCap {
-            case kCALineCapButt:
+            case CAShapeLayerLineCap.butt:
                 return .Butt
-            case kCALineCapRound:
+            case CAShapeLayerLineCap.round:
                 return .Round
-            case kCALineCapSquare:
+            case CAShapeLayerLineCap.square:
                 return .Square
             default:
                 return .Butt
@@ -286,11 +286,11 @@ public class Shape: View {
         set(lineCap) {
             switch lineCap {
             case .Butt:
-                shapeLayer.lineCap = kCALineCapButt
+                shapeLayer.lineCap = CAShapeLayerLineCap.butt
             case .Round:
-                shapeLayer.lineCap = kCALineCapRound
+                shapeLayer.lineCap = CAShapeLayerLineCap.round
             case .Square:
-                shapeLayer.lineCap = kCALineCapSquare
+                shapeLayer.lineCap = CAShapeLayerLineCap.square
             }
         }
     }
@@ -299,11 +299,11 @@ public class Shape: View {
     public var lineJoin: LineJoin {
         get {
             switch shapeLayer.lineJoin {
-            case kCALineJoinMiter:
+            case CAShapeLayerLineJoin.miter:
                 return .Miter
-            case kCALineJoinRound:
+            case CAShapeLayerLineJoin.round:
                 return .Round
-            case kCALineJoinBevel:
+            case CAShapeLayerLineJoin.bevel:
                 return .Bevel
             default:
                 return .Miter
@@ -312,11 +312,11 @@ public class Shape: View {
         set(lineJoin) {
             switch lineJoin {
             case .Miter:
-                shapeLayer.lineJoin = kCALineJoinMiter
+                shapeLayer.lineJoin = CAShapeLayerLineJoin.miter
             case .Round:
-                shapeLayer.lineJoin = kCALineJoinRound
+                shapeLayer.lineJoin = CAShapeLayerLineJoin.round
             case .Bevel:
-                shapeLayer.lineJoin = kCALineJoinBevel
+                shapeLayer.lineJoin = CAShapeLayerLineJoin.bevel
             }
         }
     }
@@ -378,7 +378,7 @@ public class Shape: View {
 
     public override func hitTest(point: Point) -> Bool {
         if let p = path {
-            return p.containsPoint(point)
+            return p.containsPoint(point: point)
         }
         return false
     }

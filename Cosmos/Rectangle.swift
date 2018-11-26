@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -64,7 +64,7 @@ public class Rectangle: Shape {
 
     override func updatePath() {
         let newPath = Path()
-        newPath.addRoundedRect(bounds, cornerWidth: corner.width, cornerHeight: corner.height)
+        newPath.addRoundedRect(rect: bounds, cornerWidth: corner.width, cornerHeight: corner.height)
         path = newPath
     }
 }

@@ -1,4 +1,4 @@
-// Copyright © 2015 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -43,7 +43,7 @@ public class Gradient: View {
     ///An array of Color objects defining the color of each gradient stop. Animatable.
     public var colors: [Color] {
         get {
-            if let cgcolors = gradientLayer.colors as? [CGColorRef] {
+            if let cgcolors = gradientLayer.colors as? [CGColor] {
                 var array = [Color]()
                 for c in cgcolors {
                     array.append(Color(c))
@@ -53,9 +53,9 @@ public class Gradient: View {
             return [C4Blue, C4Pink]
         } set {
             assert(newValue.count >= 2, "colors must have at least 2 elements")
-            var cgcolors = [CGColorRef]()
+            var cgcolors = [CGColor]()
             for c in newValue {
-                cgcolors.append(c.CGColor)
+                cgcolors.append(c.color)
             }
             self.gradientLayer.colors = cgcolors
         }
@@ -73,7 +73,7 @@ public class Gradient: View {
         } set {
             var numbers = [NSNumber]()
             for n in newValue {
-                numbers.append(n)
+                numbers.append(NSNumber.init(value: n))
             }
             gradientLayer.locations = numbers
         }
@@ -105,7 +105,7 @@ public class Gradient: View {
     /// - returns: A Double value representing the cumulative rotation of the view, measured in Radians.
     public override var rotation: Double {
         get {
-            if let number = gradientLayer.valueForKeyPath(Layer.rotationKey) as? NSNumber {
+            if let number = gradientLayer.value(forKeyPath: Layer.rotationKey) as? NSNumber {
                 return number.doubleValue
             }
             return  0.0
@@ -133,6 +133,6 @@ public class Gradient: View {
         self.init(frame: original.frame)
         self.colors = original.colors
         self.locations = original.locations
-        copyViewStyle(original)
+        copyViewStyle(viewToCopy: original)
     }
 }

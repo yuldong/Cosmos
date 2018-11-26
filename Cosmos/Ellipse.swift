@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -39,7 +39,7 @@ public class Ellipse: Shape {
 
     override func updatePath() {
         let newPath = Path()
-        newPath.addEllipse(bounds)
+        newPath.addEllipse(rect: bounds)
         path = newPath
     }
 }

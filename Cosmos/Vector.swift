@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -243,7 +243,7 @@ public func == (lhs: Vector, rhs: Vector) -> Bool {
 /// ````
 /// - parameter lhs: A Vector to which the values of `rhs` will be added
 /// - parameter rhs: A Vector
-public func += (inout lhs: Vector, rhs: Vector) {
+public func += ( lhs: inout Vector, rhs: Vector) {
     lhs.x += rhs.x
     lhs.y += rhs.y
     lhs.z += rhs.z
@@ -258,7 +258,7 @@ public func += (inout lhs: Vector, rhs: Vector) {
 /// ````
 /// - parameter lhs: A Vector to which the values of `rhs` will be subtracted
 /// - parameter rhs: A Vector
-public func -= (inout lhs: Vector, rhs: Vector) {
+public func -= ( lhs: inout Vector, rhs: Vector) {
     lhs.x -= rhs.x
     lhs.y -= rhs.y
     lhs.z -= rhs.z
@@ -272,7 +272,7 @@ public func -= (inout lhs: Vector, rhs: Vector) {
 /// ````
 /// - parameter lhs: A Vector whose values will be multiplied by `rhs`
 /// - parameter rhs: A scalar value
-public func *= (inout lhs: Vector, rhs: Double) {
+public func *= ( lhs: inout Vector, rhs: Double) {
     lhs.x *= rhs
     lhs.y *= rhs
     lhs.z *= rhs
@@ -286,7 +286,7 @@ public func *= (inout lhs: Vector, rhs: Double) {
 /// ````
 /// - parameter lhs: A Vector whose values will be divided by `rhs`
 /// - parameter rhs: A scalar value
-public func /= (inout lhs: Vector, rhs: Double) {
+public func /= ( lhs: inout Vector, rhs: Double) {
     lhs.x /= rhs
     lhs.y /= rhs
     lhs.z /= rhs

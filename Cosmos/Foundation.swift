@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -43,12 +43,12 @@ public func C4Log<T>(value: T) {
 /// - parameter points: An array of CGPoint coordinates
 /// - returns: The smallest CGRect that contains all of the points in the specified array
 public func CGRectMakeFromPoints(points: [CGPoint]) -> CGRect {
-    let path = CGPathCreateMutable()
-    CGPathMoveToPoint(path, nil, points[0].x, points[0].y)
+    let path = CGMutablePath()
+    path.move(to: points[0])
     for i in 1..<points.count {
-        CGPathAddLineToPoint(path, nil, points[i].x, points[i].y)
+        path.addLine(to: points[i])
     }
-    return CGPathGetBoundingBox(path)
+    return path.boundingBox
 }
 
 /// Sets a time to wait before executing of a block of code.
@@ -61,11 +61,8 @@ public func CGRectMakeFromPoints(points: [CGPoint]) -> CGRect {
 ///
 /// - parameter delay:  The amount of time in seconds to wait before executing the block of code.
 /// - parameter action: A block of code to perform after the delay.
-public func wait(seconds: Double, action: ()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(seconds * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(), action)
+public func wait(seconds: Double, action: @escaping ()->()) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(Int64(seconds * Double(NSEC_PER_SEC))))) {
+        action()
+    }
 }

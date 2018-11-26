@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -21,6 +21,18 @@ import UIKit
 
 /// A Image provides a view-based container for displaying a single image. You can create images from files, from other image objects, or from raw image data you receive.
 public class Image: View, NSCopying {
+    /// Initializes a new copy of the receiver.
+    /// - parameter zone: This parameter is ignored. Memory zones are no longer used by Objective-C.
+    /// - returns: a new instance that’s a copy of the receiver.
+    public func  copy(with zone: NSZone? = nil) -> Any {
+        let uiimage = UIImage(cgImage: self.contents)
+        let img = Image(uiimage: uiimage, scale: scale)
+        img.frame = self.frame
+        img.constrainsProportions = self.constrainsProportions
+        img._originalSize = _originalSize
+        return img
+    }
+    
     internal class ImageView: UIImageView {
         var imageLayer: ImageLayer {
             return self.layer as! ImageLayer // swiftlint:disable:this force_cast
@@ -89,7 +101,7 @@ public class Image: View, NSCopying {
         self.init()
         let uiimage = image.uiimage
         self.view = ImageView(image: uiimage)
-        copyViewStyle(image)
+        copyViewStyle(viewToCopy: image)
     }
 
     /// Initializes a new Image using a UIImage.
@@ -113,11 +125,11 @@ public class Image: View, NSCopying {
     /// ````
     /// - parameter uiimage: A UIImage object.
     /// - parameter scale: A `Double` should be larger than 0.0
-    convenience public init(uiimage: UIImage, let scale: Double) {
+    convenience public init(uiimage: UIImage, scale: Double) {
         self.init()
 
         if scale != 1.0 {
-            let scaledImage = UIImage(CGImage: uiimage.CGImage!, scale: CGFloat(scale), orientation: uiimage.imageOrientation)
+            let scaledImage = UIImage(cgImage: uiimage.cgImage!, scale: CGFloat(scale), orientation: uiimage.imageOrientation)
             self.view = ImageView(image: scaledImage)
         } else {
             self.view = ImageView(image: uiimage)
@@ -133,8 +145,8 @@ public class Image: View, NSCopying {
     /// ````
     /// [Example](https://gist.github.com/C4Framework/06319d420426cb0f1cb3)
     /// - parameter cgimage: A CGImageRef object.
-    convenience public init(cgimage: CGImageRef) {
-        let image = UIImage(CGImage: cgimage)
+    convenience public init(cgimage: CGImage) {
+        let image = UIImage(cgImage: cgimage)
         self.init(uiimage: image, scale: 1.0)
     }
 
@@ -146,8 +158,8 @@ public class Image: View, NSCopying {
     /// ````
     /// - parameter cgimage: A CGImageRef object.
     /// - parameter scale: The scale of the image.
-    convenience public init(cgimage: CGImageRef, scale: Double) {
-        let image = UIImage(CGImage: cgimage)
+    convenience public init(cgimage: CGImage, scale: Double) {
+        let image = UIImage(cgImage: cgimage)
         self.init(uiimage: image, scale: scale)
     }
 
@@ -163,7 +175,7 @@ public class Image: View, NSCopying {
     /// - parameter ciimage: A CIImage object.
     /// - parameter scale: The scale of the image.
     convenience public init(ciimage: CIImage, scale: Double) {
-        let image = UIImage(CIImage: ciimage)
+        let image = UIImage(ciImage: ciimage)
         self.init(uiimage: image, scale: scale)
     }
 
@@ -181,7 +193,7 @@ public class Image: View, NSCopying {
     /// - parameter data: An NSData object.
     /// - parameter scale: The scale of the image.
     convenience public init(data: NSData, scale: Double) {
-        let image = UIImage(data: data)
+        let image = UIImage(data: data as Data)
         self.init(uiimage: image!, scale: scale)
     }
 
@@ -210,7 +222,7 @@ public class Image: View, NSCopying {
         var error: NSError?
         var data: NSData?
         do {
-            data = try NSData(contentsOfURL: url, options:.DataReadingMappedIfSafe)
+            data = try NSData(contentsOf: url as URL, options:.mappedIfSafe)
         } catch let error1 as NSError {
             error = error1
             data = nil
@@ -220,7 +232,7 @@ public class Image: View, NSCopying {
             return
         }
         if let e = error {
-            C4Log("There was an error loading image data from url:\n ERROR: \(e.localizedDescription)\n URL:\(url)")
+            C4Log(value: "There was an error loading image data from url:\n ERROR: \(e.localizedDescription)\n URL:\(url)")
         }
         self.init()
     }
@@ -232,7 +244,7 @@ public class Image: View, NSCopying {
     /// - parameter size: The size {w, h} of the image you're creating based on the pixel array.
     convenience public init(pixels: [Pixel], size: Size) {
         let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo: CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
+        let bitmapInfo: CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         let bitsPerComponent: Int = 8
         let bitsPerPixel: Int = 32
         let width: Int = Int(size.width)
@@ -242,7 +254,7 @@ public class Image: View, NSCopying {
 
         var data = pixels // Copy to mutable []
         let providerRef = CGDataProviderCreateWithCFData(
-            NSData(bytes: &data, length: data.count * sizeof(Pixel))
+            NSData(bytes: &data, length: data.count * size(Pixel))
         )
 
         let cgim = CGImageCreate(
@@ -250,7 +262,7 @@ public class Image: View, NSCopying {
             height,
             bitsPerComponent,
             bitsPerPixel,
-            width * Int(sizeof(Pixel)),
+            width * Int(size(Pixel)),
             rgbColorSpace,
             bitmapInfo,
             providerRef,
@@ -269,18 +281,6 @@ public class Image: View, NSCopying {
         self.init(cgimage: cgim)
     }
 
-    /// Initializes a new copy of the receiver.
-    /// - parameter zone: This parameter is ignored. Memory zones are no longer used by Objective-C.
-    /// - returns: a new instance that’s a copy of the receiver.
-    public func copyWithZone(zone: NSZone) -> AnyObject {
-        let uiimage = UIImage(CGImage: self.contents)
-        let img = Image(uiimage: uiimage, scale: scale)
-        img.frame = self.frame
-        img.constrainsProportions = self.constrainsProportions
-        img._originalSize = _originalSize
-        return img
-    }
-
     //MARK: Properties
 
     /// Returns the UIImageView of the object.
@@ -295,15 +295,15 @@ public class Image: View, NSCopying {
         get {
             let layer = imageView.layer as CALayer
             let contents = layer.contents as! CGImage // swiftlint:disable:this force_cast
-            return UIImage(CGImage: contents, scale: CGFloat(scale), orientation: imageView.image!.imageOrientation)
+            return UIImage(cgImage: contents, scale: CGFloat(scale), orientation: imageView.image!.imageOrientation)
         }
     }
 
     /// Returns a CGImageRef representation of the receiver.
     /// - returns:	A CGImageRef object.
-    public var cgimage: CGImageRef {
+    public var cgimage: CGImage {
         get {
-            return uiimage.CGImage!
+            return uiimage.cgImage!
         }
     }
 
@@ -311,7 +311,7 @@ public class Image: View, NSCopying {
     /// - returns:	A CIImage object.
     public var ciimage: CIImage {
         get {
-            return CIImage(CGImage: cgimage)
+            return CIImage(cgImage: cgimage)
         }
     }
 
@@ -333,7 +333,7 @@ public class Image: View, NSCopying {
     /// - returns: A Double value representing the cumulative rotation of the view, measured in Radians.
     public override var rotation: Double {
         get {
-            if let number = imageLayer.valueForKeyPath(Layer.rotationKey) as? NSNumber {
+            if let number = imageLayer.value(forKeyPath: Layer.rotationKey) as? NSNumber {
                 return number.doubleValue
             }
             return  0.0
@@ -409,8 +409,8 @@ public class Image: View, NSCopying {
 
     //MARK: Filters
     lazy internal var output: CIImage = self.ciimage
-    lazy internal var filterQueue: dispatch_queue_t = {
-        return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+    lazy internal var filterQueue: DispatchQueue = {
+        return DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         }()
     lazy internal var renderImmediately = true
 }

@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -76,7 +76,7 @@ public func lerp(a: Double, _ b: Double, at: Double) -> Double {
 /// - returns: The mapped value.
 public func map(val: Double, min: Double, max: Double, toMin: Double, toMax: Double) -> Double {
     let param = (val - min)/(max -  min)
-    return lerp(toMin, toMax, at: param)
+    return lerp(a: toMin, toMax, at: param)
 }
 
 /// Return a random integer below `below`
@@ -88,7 +88,7 @@ public func map(val: Double, min: Double, max: Double, toMin: Double, toMax: Dou
 /// - parameter below: The upper bound
 ///
 /// - returns: A random value smaller than `below`
-public func random(below below: Int) -> Int {
+public func random(below: Int) -> Int {
     return Int(arc4random_uniform(UInt32(below)))
 }
 
@@ -102,7 +102,7 @@ public func random(below below: Int) -> Int {
 /// - parameter max: The upper bound
 ///
 /// - returns: A random value greater than or equal to min and less than max.
-public func random(min min: Int, max: Int) -> Int {
+public func random(min: Int, max: Int) -> Int {
     assert(min < max, "min must be less than max")
     return min + random(below: max - min)
 }
@@ -130,7 +130,7 @@ public func random01() -> Double {
 /// - parameter val: The value in radians.
 /// - returns: A double value representation of the radian value in degrees.
 public func radToDeg(val: Double) -> Double {
-    return 180.0 * val / M_PI
+    return 180.0 * val / Double.pi
 }
 
 /// Converts degree values to radians.
@@ -145,5 +145,5 @@ public func radToDeg(val: Double) -> Double {
 /// - parameter val: The value in degrees.
 /// - returns: A double value representation of the degree value in radians.
 public func degToRad(val: Double) -> Double {
-    return M_PI * val / 180.0
+    return Double.pi * val / 180.0
 }

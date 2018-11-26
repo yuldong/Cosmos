@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -31,13 +31,13 @@ extension Image {
     ///  Applies an array of fiters to the receiver's contents.
     ///
     ///  - parameter filters: an array of Filter objects
-    public func apply(filters filters: [Filter]) {
+    public func apply(filters: [Filter]) {
         for filter in filters {
-            let cifilter = filter.createCoreImageFilter(output)
+            let cifilter = filter.createCoreImageFilter(inputImage: output)
             if let outputImage = cifilter.outputImage {
                 self.output = outputImage
             } else {
-                print("Failed ot generate outputImage: \(__FUNCTION__)")
+                print("Failed ot generate outputImage: \(#function)")
             }
         }
         self.renderFilteredImage()
@@ -45,13 +45,13 @@ extension Image {
 
     func renderFilteredImage() {
         var extent = self.output.extent
-        if CGRectIsInfinite(extent) {
+        if extent.isInfinite {
             extent = self.ciimage.extent
         }
         let filterContext = CIContext(options:nil)
-        let filteredImage = filterContext.createCGImage(self.output, fromRect:extent)
-
-        dispatch_async(dispatch_get_main_queue()) {
+        let filteredImage = filterContext.createCGImage(self.output, from:extent)
+        
+        DispatchQueue.main.async {
             self.imageView.layer.contents = filteredImage
         }
     }

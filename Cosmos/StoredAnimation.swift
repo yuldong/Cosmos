@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -34,27 +34,27 @@ public class StoredAnimation: Animation {
         let disable = ShapeLayer.disableActions
         ShapeLayer.disableActions = false
         var timing: CAMediaTimingFunction
-        var options: UIViewAnimationOptions = [UIViewAnimationOptions.BeginFromCurrentState]
+        var options: UIView.AnimationOptions = [UIView.AnimationOptions.beginFromCurrentState]
 
         switch curve {
         case .Linear:
-            options = [options, UIViewAnimationOptions.CurveLinear]
-            timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            options = [options, UIView.AnimationOptions.curveLinear]
+            timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         case .EaseOut:
-            options = [options, UIViewAnimationOptions.CurveEaseOut]
-            timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            options = [options, UIView.AnimationOptions.curveEaseOut]
+            timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         case .EaseIn:
-            options = [options, UIViewAnimationOptions.CurveEaseIn]
-            timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            options = [options, UIView.AnimationOptions.curveEaseIn]
+            timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         case .EaseInOut:
-            options = [options, UIViewAnimationOptions.CurveEaseInOut]
-            timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            options = [options, UIView.AnimationOptions.curveEaseInOut]
+            timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         }
 
         autoreverses == true ? options.unionInPlace(.Autoreverse) : options.subtractInPlace(.Autoreverse)
         repeatCount > 0 ? options.unionInPlace(.Repeat) : options.subtractInPlace(.Repeat)
 
-        UIView.animateWithDuration(duration, delay: 0, options: options, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             ViewAnimation.stack.append(self)
             UIView.setAnimationRepeatCount(Float(self.repeatCount))
             CATransaction.begin()

@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -98,7 +98,7 @@ public extension View {
         }
         set {
             if let layer = layer {
-                layer.shadowColor = newValue.color?.CGColor
+                layer.shadowColor = newValue.color?.color
                 layer.shadowRadius = CGFloat(newValue.radius)
                 layer.shadowOffset = CGSize(newValue.offset)
                 layer.shadowOpacity = Float(newValue.opacity)

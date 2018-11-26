@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -33,14 +33,14 @@ extension Shape {
     ///
     /// - parameter center: The center of the new circle
     /// - parameter radius: The radius of the new circle
-    public func addCircle(center center: Point, radius: Double) {
+    public func addCircle(center: Point, radius: Double) {
         var newPath = path
         if newPath == nil {
             newPath = Path()
         }
 
         let r = Rect(center.x - radius, center.y - radius, radius*2, radius*2)
-        newPath!.addEllipse(r)
+        newPath!.addEllipse(rect: r)
         path = newPath
         adjustToFitPath()
     }
@@ -61,17 +61,17 @@ extension Shape {
     ///
     /// - parameter points: An array of Point structs that defines the new polygon
     /// - parameter closed: If true then the polygon will have an additional line between its first and last points
-    public func addPolygon(points points: [Point], closed: Bool = true) {
+    public func addPolygon(points: [Point], closed: Bool = true) {
         var newPath = path
         if newPath == nil {
             newPath = Path()
         }
 
         if !points.isEmpty {
-            newPath!.moveToPoint(points[0])
+            newPath!.moveToPoint(point: points[0])
         }
         for point in points {
-            newPath!.addLineToPoint(point)
+            newPath!.addLineToPoint(point: point)
         }
         if closed {
             newPath!.closeSubpath()
@@ -96,9 +96,9 @@ extension Shape {
         }
 
         if newPath!.currentPoint != points[0] {
-            newPath!.moveToPoint(points[0])
+            newPath!.moveToPoint(point: points[0])
         }
-        newPath!.addLineToPoint(points[1])
+        newPath!.addLineToPoint(point: points[1])
         path = newPath
         adjustToFitPath()
     }
@@ -115,16 +115,16 @@ extension Shape {
     ///
     /// - parameter points: An array of Point structs that defines the beginning and end points of the curve
     /// - parameter controls: An array of Point structs used to define the shape of the curve
-    public func addCurve(points points: [Point], controls: [Point]) {
+    public func addCurve(points: [Point], controls: [Point]) {
         let newPath = path
         if path == nil {
             path = Path()
         }
 
         if newPath!.currentPoint != points[0] {
-            newPath!.moveToPoint(points[0])
+            newPath!.moveToPoint(point: points[0])
         }
-        newPath!.addCurveToPoint(points[1], control1: controls[0], control2: controls[1])
+        newPath!.addCurveToPoint(point: points[1], control1: controls[0], control2: controls[1])
         path = newPath
         adjustToFitPath()
     }

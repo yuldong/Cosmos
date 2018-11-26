@@ -20,10 +20,10 @@
 import ReplayKit
 
 public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
-    public typealias PreviewControllerFinishedAction = (activities: Set<String>?) -> ()
+    public typealias PreviewControllerFinishedAction = (_ activities: Set<String>?) -> ()
     public typealias RecorderStoppedAction = () -> ()
 
-    let recorder = RPScreenRecorder.sharedRecorder()
+    let recorder = RPScreenRecorder.shared()
     var preview: RPPreviewViewController?
     var activities: Set<String>?
 
@@ -33,7 +33,7 @@ public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
 
     public func start() {
         preview = nil
-        recorder.startRecordingWithMicrophoneEnabled(enableMicrophone) { error in
+        recorder.startRecording(withMicrophoneEnabled: enableMicrophone) { error in
             if let error = error {
                 print("Start Recording Error: \(error.localizedDescription)")
             }
@@ -42,13 +42,13 @@ public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
 
     public func start(duration: Double) {
         start()
-        wait(duration) {
+        wait(seconds: duration) {
             self.stop()
         }
     }
 
     public func stop() {
-        recorder.stopRecordingWithHandler { previewViewController, error in
+        recorder.stopRecording { previewViewController, error in
             self.preview = previewViewController
             self.preview?.previewControllerDelegate = self
             self.recordingEndedAction?()
@@ -61,7 +61,7 @@ public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
             return
         }
 
-        controller.presentViewController(preview, animated: true, completion: nil)
+        controller.present(preview, animated: true, completion: nil)
     }
 
     public func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
@@ -69,7 +69,7 @@ public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
     }
 
     public func previewControllerDidFinish(previewController: RPPreviewViewController) {
-        previewFinishedAction?(activities: activities)
-        preview?.parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        previewFinishedAction?(activities)
+        preview?.parent?.dismiss(animated: true, completion: nil)
     }
 }

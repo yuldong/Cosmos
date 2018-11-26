@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -31,7 +31,7 @@ extension UIView {
         } else if let v = subview as? View {
             self.addSubview(v.view)
         } else {
-            fatalError("Can't add subview of class `\(subview.dynamicType)`")
+            fatalError("Can't add subview of class `\(type(of: subview))`")
         }
     }
 
@@ -48,7 +48,7 @@ extension UIView {
     /// - parameter subviews: An array of UIView or View subclasses to be added to the receiver
     public func add<T>(subviews: [T?]) {
         for subv in subviews {
-            self.add(subv)
+            self.add(subview: subv)
         }
     }
 
@@ -63,7 +63,7 @@ extension UIView {
         } else if let v = subview as? View {
             v.view.removeFromSuperview()
         } else {
-            fatalError("Can't remove subview of class `\(subview.dynamicType)`")
+            fatalError("Can't remove subview of class `\(type(of: subview))`")
         }
     }
 
@@ -76,7 +76,7 @@ extension UIView {
         } else if let v = subview as? View {
             self.sendSubviewToBack(v.view)
         } else {
-            fatalError("Can't operate on subview of class `\(subview.dynamicType)`")
+            fatalError("Can't operate on subview of class `\(type(of: subview))`")
         }
     }
 
@@ -89,7 +89,7 @@ extension UIView {
         } else if let v = subview as? View {
             self.bringSubviewToFront(v.view)
         } else {
-            fatalError("Can't operate on subview of class `\(subview.dynamicType)`")
+            fatalError("Can't operate on subview of class `\(type(of: subview))`")
         }
     }
 }

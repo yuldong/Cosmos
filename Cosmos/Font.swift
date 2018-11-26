@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -69,7 +69,7 @@ public class Font: NSObject {
     /// Returns an array of font family names available on the system.
     /// - returns:	An array of String objects, each of which contains the name of a font family.
     public class func familyNames() -> [AnyObject] {
-        return UIFont.familyNames()
+        return UIFont.familyNames as [AnyObject]
     }
 
     /// Returns an array of font names available in a particular font family.
@@ -81,7 +81,7 @@ public class Font: NSObject {
     /// - parameter familyName:	The name of the font family.
     /// - returns:	An array of String objects, each of which contains a font name associated with the specified family.
     public class func fontNames(familyName: String) -> [AnyObject] {
-        return UIFont.fontNamesForFamilyName(familyName)
+        return UIFont.fontNames(forFamilyName: familyName) as [AnyObject]
     }
 
     /// Returns the font object used for standard interface items in the specified size.
@@ -91,7 +91,7 @@ public class Font: NSObject {
     /// - parameter size:	The size (in points) to which the font is scaled.
     /// - returns:	A font object of the specified size.
     public class func systemFont(size: Double) -> Font {
-        return Font(font: UIFont.systemFontOfSize(CGFloat(size)))
+        return Font(font: UIFont.systemFont(ofSize: CGFloat(size)))
     }
 
     /// Returns the font object used for standard interface items that are rendered in boldface type in the specified size.
@@ -101,7 +101,7 @@ public class Font: NSObject {
     /// - parameter size:	The size (in points) to which the font is scaled.
     /// - returns:	A font object of the specified size.
     public class func boldSystemFont(size: Double) -> Font {
-        return Font(font: UIFont.boldSystemFontOfSize(CGFloat(size)))
+        return Font(font: UIFont.boldSystemFont(ofSize: CGFloat(size)))
     }
 
     /// Returns the font object used for standard interface items that are rendered in italic type in the specified size.
@@ -111,7 +111,7 @@ public class Font: NSObject {
     /// - parameter size:	The size (in points) to which the font is scaled.
     /// - returns: A font object of the specified size.
     public class func italicSystemFont(size: Double) -> Font {
-        return Font(font: UIFont.italicSystemFontOfSize(CGFloat(size)))
+        return Font(font: UIFont.italicSystemFont(ofSize: CGFloat(size)))
     }
 
 
@@ -123,7 +123,7 @@ public class Font: NSObject {
     /// - parameter size:	The desired size (in points) of the new font object.
     /// - returns:	A font object of the specified size.
     public func font(size: Double) -> Font {
-        return Font(font: internalFont!.fontWithSize(CGFloat(size)))
+        return Font(font: internalFont!.withSize(CGFloat(size)))
     }
 
     /// The font family name. (read-only)
@@ -182,34 +182,34 @@ public class Font: NSObject {
     /// Returns the standard font size used for labels.
     /// - returns:	The standard label font size in points.
     public var labelFontSize: Double {
-        return Double(UIFont.labelFontSize())
+        return Double(UIFont.labelFontSize)
     }
 
     /// Returns the standard font size used for buttons.
     /// - returns:	The standard button font size in points.
     public var buttonFontSize: Double {
-        return Double(UIFont.buttonFontSize())
+        return Double(UIFont.buttonFontSize)
     }
 
     /// Returns the size of the standard system font.
     /// - returns:	The standard system font size in points.
     public var systemFontSize: Double {
-        return Double(UIFont.systemFontSize())
+        return Double(UIFont.systemFontSize)
     }
 
     /// Returns the size of the standard small system font.
     /// - returns:	The standard small system font size in points.
     public var smallSystemFontSize: Double {
-        return Double(UIFont.smallSystemFontSize())
+        return Double(UIFont.smallSystemFontSize)
     }
 
     /// Returns a CGFontRef version of the receiver.
-    public var CGFont: CGFontRef? {
-        return CGFontCreateWithFontName(fontName as NSString)
+    public var font: CGFont? {
+        return CGFont(fontName as NSString)
     }
 
     /// Returns a CTFontRef version of the receiver.
-    public var CTFont: CTFontRef {
-        return CTFontCreateWithNameAndOptions(fontName as CFString!, CGFloat(pointSize), nil, [])
+    public var CTFont: CTFont {
+        return CTFontCreateWithNameAndOptions(fontName as CFString, CGFloat(pointSize), nil, [])
     }
 }

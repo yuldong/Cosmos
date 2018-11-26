@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -70,9 +70,9 @@ public class Polygon: Shape {
         fillColor = clear
 
         let path = Path()
-        path.moveToPoint(points[0])
+        path.moveToPoint(point: points[0])
         for i in 1..<points.count {
-            path.addLineToPoint(points[i])
+            path.addLineToPoint(point: points[i])
         }
         self.path = path
 
@@ -88,10 +88,10 @@ public class Polygon: Shape {
     override func updatePath() {
         if points.count > 1 {
             let p = Path()
-            p.moveToPoint(points[0])
+            p.moveToPoint(point: points[0])
 
             for i in 1..<points.count {
-                p.addLineToPoint(points[i])
+                p.addLineToPoint(point: points[i])
             }
 
             path = p

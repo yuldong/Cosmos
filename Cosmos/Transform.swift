@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -25,7 +25,7 @@ import QuartzCore
 ///
 ///  Transform can translate, rotate, scale.
 public struct Transform: Equatable {
-    private var matrix = [Double](count: 16, repeatedValue: 0)
+    private var matrix = [Double](repeating: 0, count: 16)
 
     public subscript(row: Int, col: Int) -> Double {
         get {
@@ -169,8 +169,8 @@ public struct Transform: Equatable {
     /// ````
     /// - parameter translation: A `Vector` that represents the translation to apply.
     public mutating func translate(translation: Vector) {
-        let t = Transform.makeTranslation(translation)
-        self = concat(self, t2: t)
+        let t = Transform.makeTranslation(translation: translation)
+        self = concat(t1: self, t2: t)
     }
 
     /// Applies a scale to the receiver. The `z` variable is optional.
@@ -182,8 +182,8 @@ public struct Transform: Equatable {
     /// - parameter sy: The amount to scale in the `y` axis
     /// - parameter sz: The amount to scale in the `z` axis
     public mutating func scale(sx: Double, _ sy: Double, _ sz: Double = 1) {
-        let s = Transform.makeScale(sx, sy, sz)
-        self = concat(self, t2: s)
+        let s = Transform.makeScale(sx: sx, sy, sz)
+        self = concat(t1: self, t2: s)
     }
 
     /// Applies a rotation. The `axis` component is optional.
@@ -194,8 +194,8 @@ public struct Transform: Equatable {
     /// - parameter angle: The angle, in radians, to rotate
     /// - parameter axis: The axis around which to rotate, defaults to the z axis {0,0,1}
     public mutating func rotate(angle: Double, axis: Vector = Vector(x: 0, y: 0, z: 1)) {
-        let r = Transform.makeRotation(angle, axis: axis)
-        self = concat(self, t2: r)
+        let r = Transform.makeRotation(angle: angle, axis: axis)
+        self = concat(t1: self, t2: r)
     }
 
     /// The CGAffineTransform version of the receiver.
@@ -301,7 +301,7 @@ public func concat(t1: Transform, t2: Transform) -> Transform {
 public func inverse(t: Transform) -> Transform? {
     var N: __CLPK_integer = 4
     var error: __CLPK_integer = 0
-    var pivot = [__CLPK_integer](count: 4, repeatedValue: 0)
+    var pivot = [__CLPK_integer](repeating: 0, count: 4)
     var matrix: [__CLPK_doublereal] = t.matrix
 
     // LU factorisation
@@ -311,7 +311,7 @@ public func inverse(t: Transform) -> Transform? {
     }
 
     // matrix inversion
-    var workspace = [__CLPK_doublereal](count: 4, repeatedValue: 0)
+    var workspace = [__CLPK_doublereal](repeating: 0, count: 4)
     dgetri_(&N, &matrix, &N, &pivot, &workspace, &N, &error)
     if error != 0 {
         return nil

@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -51,7 +51,7 @@ public struct DotScreen: Filter {
         filter.setValue(width, forKey:"inputWidth")
         filter.setValue(angle, forKey:"inputAngle")
         filter.setValue(sharpness, forKey:"inputSharpness")
-        filter.setValue(CIVector(CGPoint: CGPoint(center)), forKey:"inputCenter")
+        filter.setValue(CIVector(cgPoint: CGPoint(center)), forKey:"inputCenter")
         filter.setValue(inputImage, forKey: "inputImage")
         return filter
     }

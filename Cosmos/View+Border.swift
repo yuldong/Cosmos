@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -73,7 +73,7 @@ public extension View {
             if let layer = layer {
                 layer.borderWidth = CGFloat(newValue.width)
                 if let color = newValue.color {
-                    layer.borderColor = color.CGColor
+                    layer.borderColor = color.color
                 }
                 layer.cornerRadius = CGFloat(newValue.radius)
             }

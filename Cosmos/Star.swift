@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -39,8 +39,8 @@ public class Star: Polygon {
     /// - parameter innerRadius: The radial distance from the center of the star to the inner points
     /// - parameter outerRadius: The radial distance from the center of the start to the outer points
     convenience public init(center: Point, pointCount: Int, innerRadius: Double, outerRadius: Double) {
-        let wedgeAngle = 2.0 * M_PI / Double(pointCount)
-        var angle = M_PI/Double(pointCount)-M_PI_2
+        let wedgeAngle = 2.0 * Double.pi / Double(pointCount)
+        var angle = Double.pi / Double(pointCount) - Double.pi / 2
 
         var pointArray = [Point]()
 

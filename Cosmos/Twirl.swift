@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -34,7 +34,7 @@ public struct Twirl: Filter {
     /// The radius of the twirl effect. Defaults to 100.o
     public var radius: Double = 100.0
     /// The angle of the twirl effect. Defaults to 𝞹
-    public var angle: Double = M_PI
+    public var angle: Double = Double.pi
 
     ///Initializes a new filter
     public init() {}
@@ -48,7 +48,7 @@ public struct Twirl: Filter {
         filter.setDefaults()
         filter.setValue(radius, forKey:"inputRadius")
         filter.setValue(angle, forKey:"inputAngle")
-        filter.setValue(CIVector(CGPoint: CGPoint(center)), forKey:"inputCenter")
+        filter.setValue(CIVector(cgPoint: CGPoint(center)), forKey:"inputCenter")
         filter.setValue(inputImage, forKey: "inputImage")
         return filter
     }

@@ -51,7 +51,7 @@
 		1F4A7F931C8AA69400BE1307 /* StoredAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F921C8AA69400BE1307 /* StoredAnimation.swift */; };
 		1F4A7F951C8AA69400BE1307 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F941C8AA69400BE1307 /* Star.swift */; };
 		1F4A7F971C8AA69400BE1307 /* TextShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F961C8AA69400BE1307 /* TextShape.swift */; };
-		1F4A7F991C8AA69400BE1307 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F981C8AA69400BE1307 /* Timer.swift */; };
+		1F4A7F991C8AA69400BE1307 /* C4Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F981C8AA69400BE1307 /* C4Timer.swift */; };
 		1F4A7F9B1C8AA69400BE1307 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F9A1C8AA69400BE1307 /* Triangle.swift */; };
 		1F4A7F9D1C8AA69400BE1307 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F9C1C8AA69400BE1307 /* UIImage+Color.swift */; };
 		1F4A7F9F1C8AA69400BE1307 /* UIImage+AddRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7F9E1C8AA69400BE1307 /* UIImage+AddRemove.swift */; };
@@ -66,9 +66,6 @@
 		1F4A7FB11C8AA69400BE1307 /* UIGestureRecognizer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FB01C8AA69400BE1307 /* UIGestureRecognizer+Closure.swift */; };
 		1F4A7FB31C8AA69400BE1307 /* UIViewController+C4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FB21C8AA69400BE1307 /* UIViewController+C4View.swift */; };
 		1F4A7FB51C8AA69400BE1307 /* UIView+AddRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FB41C8AA69400BE1307 /* UIView+AddRemove.swift */; };
-		1F4A7FB81C8AA69400BE1307 /* Loop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FB71C8AA69400BE1307 /* Loop.aif */; };
-		1F4A7FBA1C8AA69400BE1307 /* halo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FB91C8AA69400BE1307 /* halo.mp4 */; };
-		1F4A7FBC1C8AA69400BE1307 /* haloGray.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FBB1C8AA69400BE1307 /* haloGray.mp4 */; };
 		1F4A7FBF1C8AA69400BE1307 /* Bloom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FBE1C8AA69400BE1307 /* Bloom.swift */; };
 		1F4A7FC11C8AA69400BE1307 /* Checkerboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FC01C8AA69400BE1307 /* Checkerboard.swift */; };
 		1F4A7FC31C8AA69400BE1307 /* ColorBurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FC21C8AA69400BE1307 /* ColorBurn.swift */; };
@@ -82,8 +79,26 @@
 		1F4A7FD31C8AA69400BE1307 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD21C8AA69400BE1307 /* WorkSpace.swift */; };
 		1F4A7FD61C8AA69400BE1307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD41C8AA69400BE1307 /* Main.storyboard */; };
 		1F4A7FD81C8AA69400BE1307 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD71C8AA69400BE1307 /* Images.xcassets */; };
-		1F4A7FDB1C8AA69400BE1307 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD91C8AA69400BE1307 /* LaunchScreen.xib */; };
 		1F4A7FE61C8AA69400BE1307 /* CosmosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FE51C8AA69400BE1307 /* CosmosTests.swift */; };
+		1F4A7FF51C8AAA1D00BE1307 /* audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */; };
+		1F4A7FF61C8AAA1D00BE1307 /* audio2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */; };
+		1F4A7FF71C8AAA1D00BE1307 /* menuClose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */; };
+		1F4A7FF81C8AAA1D00BE1307 /* menuOpen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF31C8AAA1D00BE1307 /* menuOpen.mp3 */; };
+		1F4A7FF91C8AAA1D00BE1307 /* tick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF41C8AAA1D00BE1307 /* tick.mp3 */; };
+		1F4A80091C8AAA5E00BE1307 /* AstrologicalSignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FFB1C8AAA5E00BE1307 /* AstrologicalSignProvider.swift */; };
+		1F4A800A1C8AAA5E00BE1307 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FFC1C8AAA5E00BE1307 /* InfiniteScrollView.swift */; };
+		1F4A800B1C8AAA5E00BE1307 /* InfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FFD1C8AAA5E00BE1307 /* InfoPanel.swift */; };
+		1F4A800C1C8AAA5E00BE1307 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FFE1C8AAA5E00BE1307 /* Menu.swift */; };
+		1F4A800D1C8AAA5E00BE1307 /* MenuIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FFF1C8AAA5E00BE1307 /* MenuIcons.swift */; };
+		1F4A800F1C8AAA5E00BE1307 /* MenuRings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80011C8AAA5E00BE1307 /* MenuRings.swift */; };
+		1F4A80101C8AAA5E00BE1307 /* MenuSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80021C8AAA5E00BE1307 /* MenuSelector.swift */; };
+		1F4A80111C8AAA5E00BE1307 /* MenuShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80031C8AAA5E00BE1307 /* MenuShadow.swift */; };
+		1F4A80121C8AAA5E00BE1307 /* SignLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80041C8AAA5E00BE1307 /* SignLines.swift */; };
+		1F4A80131C8AAA5E00BE1307 /* Stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80051C8AAA5E00BE1307 /* Stars.swift */; };
+		1F4A80141C8AAA5E00BE1307 /* StarsBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80061C8AAA5E00BE1307 /* StarsBackground.swift */; };
+		1F4A80151C8AAA5E00BE1307 /* StarsBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80071C8AAA5E00BE1307 /* StarsBig.swift */; };
+		1F4A80161C8AAA5E00BE1307 /* StarsSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A80081C8AAA5E00BE1307 /* StarsSmall.swift */; };
+		1F4A80191C8AABBB00BE1307 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A80181C8AABBB00BE1307 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +157,7 @@
 		1F4A7F921C8AA69400BE1307 /* StoredAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredAnimation.swift; sourceTree = "<group>"; };
 		1F4A7F941C8AA69400BE1307 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		1F4A7F961C8AA69400BE1307 /* TextShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShape.swift; sourceTree = "<group>"; };
-		1F4A7F981C8AA69400BE1307 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		1F4A7F981C8AA69400BE1307 /* C4Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C4Timer.swift; sourceTree = "<group>"; };
 		1F4A7F9A1C8AA69400BE1307 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		1F4A7F9C1C8AA69400BE1307 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		1F4A7F9E1C8AA69400BE1307 /* UIImage+AddRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AddRemove.swift"; sourceTree = "<group>"; };
@@ -157,9 +172,6 @@
 		1F4A7FB01C8AA69400BE1307 /* UIGestureRecognizer+Closure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Closure.swift"; sourceTree = "<group>"; };
 		1F4A7FB21C8AA69400BE1307 /* UIViewController+C4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+C4View.swift"; sourceTree = "<group>"; };
 		1F4A7FB41C8AA69400BE1307 /* UIView+AddRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddRemove.swift"; sourceTree = "<group>"; };
-		1F4A7FB71C8AA69400BE1307 /* Loop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Loop.aif; sourceTree = "<group>"; };
-		1F4A7FB91C8AA69400BE1307 /* halo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = halo.mp4; sourceTree = "<group>"; };
-		1F4A7FBB1C8AA69400BE1307 /* haloGray.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = haloGray.mp4; sourceTree = "<group>"; };
 		1F4A7FBE1C8AA69400BE1307 /* Bloom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bloom.swift; sourceTree = "<group>"; };
 		1F4A7FC01C8AA69400BE1307 /* Checkerboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkerboard.swift; sourceTree = "<group>"; };
 		1F4A7FC21C8AA69400BE1307 /* ColorBurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBurn.swift; sourceTree = "<group>"; };
@@ -173,11 +185,29 @@
 		1F4A7FD21C8AA69400BE1307 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
 		1F4A7FD51C8AA69400BE1307 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F4A7FD71C8AA69400BE1307 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1F4A7FDA1C8AA69400BE1307 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1F4A7FDC1C8AA69400BE1307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F4A7FE11C8AA69400BE1307 /* CosmosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CosmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4A7FE51C8AA69400BE1307 /* CosmosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosTests.swift; sourceTree = "<group>"; };
 		1F4A7FE71C8AA69400BE1307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
+		1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio2.mp3; sourceTree = "<group>"; };
+		1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuClose.mp3; sourceTree = "<group>"; };
+		1F4A7FF31C8AAA1D00BE1307 /* menuOpen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuOpen.mp3; sourceTree = "<group>"; };
+		1F4A7FF41C8AAA1D00BE1307 /* tick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick.mp3; sourceTree = "<group>"; };
+		1F4A7FFB1C8AAA5E00BE1307 /* AstrologicalSignProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AstrologicalSignProvider.swift; sourceTree = "<group>"; };
+		1F4A7FFC1C8AAA5E00BE1307 /* InfiniteScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
+		1F4A7FFD1C8AAA5E00BE1307 /* InfoPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPanel.swift; sourceTree = "<group>"; };
+		1F4A7FFE1C8AAA5E00BE1307 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		1F4A7FFF1C8AAA5E00BE1307 /* MenuIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuIcons.swift; sourceTree = "<group>"; };
+		1F4A80011C8AAA5E00BE1307 /* MenuRings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuRings.swift; sourceTree = "<group>"; };
+		1F4A80021C8AAA5E00BE1307 /* MenuSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSelector.swift; sourceTree = "<group>"; };
+		1F4A80031C8AAA5E00BE1307 /* MenuShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuShadow.swift; sourceTree = "<group>"; };
+		1F4A80041C8AAA5E00BE1307 /* SignLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignLines.swift; sourceTree = "<group>"; };
+		1F4A80051C8AAA5E00BE1307 /* Stars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stars.swift; sourceTree = "<group>"; };
+		1F4A80061C8AAA5E00BE1307 /* StarsBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsBackground.swift; sourceTree = "<group>"; };
+		1F4A80071C8AAA5E00BE1307 /* StarsBig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsBig.swift; sourceTree = "<group>"; };
+		1F4A80081C8AAA5E00BE1307 /* StarsSmall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarsSmall.swift; sourceTree = "<group>"; };
+		1F4A80181C8AABBB00BE1307 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,14 +249,11 @@
 		1F4A7F3C1C8AA69400BE1307 /* Cosmos */ = {
 			isa = PBXGroup;
 			children = (
-				1F4A7F3D1C8AA69400BE1307 /* AppDelegate.swift */,
 				1F4A7FD21C8AA69400BE1307 /* WorkSpace.swift */,
-				1F4A7FD41C8AA69400BE1307 /* Main.storyboard */,
-				1F4A7FD71C8AA69400BE1307 /* Images.xcassets */,
-				1F4A7FD91C8AA69400BE1307 /* LaunchScreen.xib */,
-				1F4A7FDC1C8AA69400BE1307 /* Info.plist */,
+				1F4A80171C8AAA6500BE1307 /* Source */,
+				1F4A7FFA1C8AAA2700BE1307 /* Audio */,
+				1F4A801A1C8AABD900BE1307 /* Other Files */,
 				1F4A7F3F1C8AA69400BE1307 /* C4 */,
-				1F4A7FB61C8AA69400BE1307 /* Media */,
 			);
 			path = Cosmos;
 			sourceTree = "<group>";
@@ -293,7 +320,7 @@
 				1F4A7F921C8AA69400BE1307 /* StoredAnimation.swift */,
 				1F4A7F941C8AA69400BE1307 /* Star.swift */,
 				1F4A7F961C8AA69400BE1307 /* TextShape.swift */,
-				1F4A7F981C8AA69400BE1307 /* Timer.swift */,
+				1F4A7F981C8AA69400BE1307 /* C4Timer.swift */,
 				1F4A7F9A1C8AA69400BE1307 /* Triangle.swift */,
 				1F4A7F9C1C8AA69400BE1307 /* UIImage+Color.swift */,
 				1F4A7F9E1C8AA69400BE1307 /* UIImage+AddRemove.swift */,
@@ -311,16 +338,6 @@
 				1F4A7FBD1C8AA69400BE1307 /* Filters */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		1F4A7FB61C8AA69400BE1307 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				1F4A7FB71C8AA69400BE1307 /* Loop.aif */,
-				1F4A7FB91C8AA69400BE1307 /* halo.mp4 */,
-				1F4A7FBB1C8AA69400BE1307 /* haloGray.mp4 */,
-			);
-			name = Media;
 			sourceTree = "<group>";
 		};
 		1F4A7FBD1C8AA69400BE1307 /* Filters */ = {
@@ -347,6 +364,66 @@
 				1F4A7FE71C8AA69400BE1307 /* Info.plist */,
 			);
 			path = CosmosTests;
+			sourceTree = "<group>";
+		};
+		1F4A7FFA1C8AAA2700BE1307 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */,
+				1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */,
+				1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */,
+				1F4A7FF31C8AAA1D00BE1307 /* menuOpen.mp3 */,
+				1F4A7FF41C8AAA1D00BE1307 /* tick.mp3 */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		1F4A80171C8AAA6500BE1307 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1F4A7FFB1C8AAA5E00BE1307 /* AstrologicalSignProvider.swift */,
+				1F4A7FFC1C8AAA5E00BE1307 /* InfiniteScrollView.swift */,
+				1F4A7FFD1C8AAA5E00BE1307 /* InfoPanel.swift */,
+				1F4A801B1C8AABFE00BE1307 /* Menu */,
+				1F4A801C1C8AAC0E00BE1307 /* Background */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1F4A801A1C8AABD900BE1307 /* Other Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F4A7FD71C8AA69400BE1307 /* Images.xcassets */,
+				1F4A7FDC1C8AA69400BE1307 /* Info.plist */,
+				1F4A7F3D1C8AA69400BE1307 /* AppDelegate.swift */,
+				1F4A7FD41C8AA69400BE1307 /* Main.storyboard */,
+				1F4A80181C8AABBB00BE1307 /* LaunchScreen.storyboard */,
+			);
+			name = "Other Files";
+			sourceTree = "<group>";
+		};
+		1F4A801B1C8AABFE00BE1307 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1F4A7FFE1C8AAA5E00BE1307 /* Menu.swift */,
+				1F4A7FFF1C8AAA5E00BE1307 /* MenuIcons.swift */,
+				1F4A80011C8AAA5E00BE1307 /* MenuRings.swift */,
+				1F4A80021C8AAA5E00BE1307 /* MenuSelector.swift */,
+				1F4A80031C8AAA5E00BE1307 /* MenuShadow.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		1F4A801C1C8AAC0E00BE1307 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				1F4A80041C8AAA5E00BE1307 /* SignLines.swift */,
+				1F4A80051C8AAA5E00BE1307 /* Stars.swift */,
+				1F4A80061C8AAA5E00BE1307 /* StarsBackground.swift */,
+				1F4A80071C8AAA5E00BE1307 /* StarsBig.swift */,
+				1F4A80081C8AAA5E00BE1307 /* StarsSmall.swift */,
+			);
+			name = Background;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,11 +471,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = C4;
 				TargetAttributes = {
 					1F4A7F391C8AA69400BE1307 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = N6JQ46CTL8;
+						ProvisioningStyle = Manual;
 					};
 					1F4A7FE01C8AA69400BE1307 = {
 						CreatedOnToolsVersion = 7.3;
@@ -430,12 +509,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F4A7FB81C8AA69400BE1307 /* Loop.aif in Resources */,
 				1F4A7FD81C8AA69400BE1307 /* Images.xcassets in Resources */,
-				1F4A7FBA1C8AA69400BE1307 /* halo.mp4 in Resources */,
-				1F4A7FBC1C8AA69400BE1307 /* haloGray.mp4 in Resources */,
-				1F4A7FDB1C8AA69400BE1307 /* LaunchScreen.xib in Resources */,
+				1F4A7FF71C8AAA1D00BE1307 /* menuClose.mp3 in Resources */,
+				1F4A7FF81C8AAA1D00BE1307 /* menuOpen.mp3 in Resources */,
+				1F4A7FF61C8AAA1D00BE1307 /* audio2.mp3 in Resources */,
+				1F4A7FF91C8AAA1D00BE1307 /* tick.mp3 in Resources */,
 				1F4A7FD61C8AA69400BE1307 /* Main.storyboard in Resources */,
+				1F4A80191C8AABBB00BE1307 /* LaunchScreen.storyboard in Resources */,
+				1F4A7FF51C8AAA1D00BE1307 /* audio1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +544,7 @@
 				1F4A7F9F1C8AA69400BE1307 /* UIImage+AddRemove.swift in Sources */,
 				1F4A7FBF1C8AA69400BE1307 /* Bloom.swift in Sources */,
 				1F4A7F871C8AA69400BE1307 /* Rectangle.swift in Sources */,
+				1F4A80091C8AAA5E00BE1307 /* AstrologicalSignProvider.swift in Sources */,
 				1F4A7F8B1C8AA69400BE1307 /* ScreenRecorder.swift in Sources */,
 				1F4A7F771C8AA69400BE1307 /* ImageLayer.swift in Sources */,
 				1F4A7FC91C8AA69400BE1307 /* HueAdjust.swift in Sources */,
@@ -471,9 +553,13 @@
 				1F4A7F3E1C8AA69400BE1307 /* AppDelegate.swift in Sources */,
 				1F4A7FA11C8AA69400BE1307 /* View.swift in Sources */,
 				1F4A7F731C8AA69400BE1307 /* Image+Filter.swift in Sources */,
+				1F4A80131C8AAA5E00BE1307 /* Stars.swift in Sources */,
+				1F4A80151C8AAA5E00BE1307 /* StarsBig.swift in Sources */,
 				1F4A7FAB1C8AA69400BE1307 /* View+Shadow.swift in Sources */,
+				1F4A80141C8AAA5E00BE1307 /* StarsBackground.swift in Sources */,
 				1F4A7F811C8AA69400BE1307 /* PlayerLayer.swift in Sources */,
 				1F4A7FCD1C8AA69400BE1307 /* Sepia.swift in Sources */,
+				1F4A80161C8AAA5E00BE1307 /* StarsSmall.swift in Sources */,
 				1F4A7F521C8AA69400BE1307 /* Transform.swift in Sources */,
 				1F4A7F7F1C8AA69400BE1307 /* Pixel.swift in Sources */,
 				1F4A7F8F1C8AA69400BE1307 /* Shape.swift in Sources */,
@@ -481,8 +567,10 @@
 				1F4A7FA31C8AA69400BE1307 /* View+Animation.swift in Sources */,
 				1F4A7F591C8AA69400BE1307 /* Arc.swift in Sources */,
 				1F4A7FB11C8AA69400BE1307 /* UIGestureRecognizer+Closure.swift in Sources */,
+				1F4A80111C8AAA5E00BE1307 /* MenuShadow.swift in Sources */,
 				1F4A7F6D1C8AA69400BE1307 /* GradientLayer.swift in Sources */,
 				1F4A7F931C8AA69400BE1307 /* StoredAnimation.swift in Sources */,
+				1F4A800D1C8AAA5E00BE1307 /* MenuIcons.swift in Sources */,
 				1F4A7F631C8AA69400BE1307 /* Ellipse.swift in Sources */,
 				1F4A7F461C8AA69400BE1307 /* Foundation.swift in Sources */,
 				1F4A7FA51C8AA69400BE1307 /* View+Border.swift in Sources */,
@@ -501,20 +589,25 @@
 				1F4A7FCF1C8AA69400BE1307 /* Sharpen.swift in Sources */,
 				1F4A7FC51C8AA69400BE1307 /* DotScreen.swift in Sources */,
 				1F4A7F651C8AA69400BE1307 /* Filter.swift in Sources */,
-				1F4A7F991C8AA69400BE1307 /* Timer.swift in Sources */,
+				1F4A7F991C8AA69400BE1307 /* C4Timer.swift in Sources */,
 				1F4A7F4A1C8AA69400BE1307 /* Path.swift in Sources */,
+				1F4A800A1C8AAA5E00BE1307 /* InfiniteScrollView.swift in Sources */,
 				1F4A7FB51C8AA69400BE1307 /* UIView+AddRemove.swift in Sources */,
+				1F4A80101C8AAA5E00BE1307 /* MenuSelector.swift in Sources */,
 				1F4A7FAD1C8AA69400BE1307 /* ViewAnimation.swift in Sources */,
 				1F4A7F5D1C8AA69400BE1307 /* CanvasController.swift in Sources */,
 				1F4A7F571C8AA69400BE1307 /* Animation.swift in Sources */,
 				1F4A7F691C8AA69400BE1307 /* Generator.swift in Sources */,
 				1F4A7FA71C8AA69400BE1307 /* View+KeyValues.swift in Sources */,
 				1F4A7FA91C8AA69400BE1307 /* View+Render.swift in Sources */,
+				1F4A800B1C8AAA5E00BE1307 /* InfoPanel.swift in Sources */,
 				1F4A7FC31C8AA69400BE1307 /* ColorBurn.swift in Sources */,
 				1F4A7F6B1C8AA69400BE1307 /* Gradient.swift in Sources */,
 				1F4A7F9B1C8AA69400BE1307 /* Triangle.swift in Sources */,
 				1F4A7FD11C8AA69400BE1307 /* Twirl.swift in Sources */,
+				1F4A800C1C8AAA5E00BE1307 /* Menu.swift in Sources */,
 				1F4A7F481C8AA69400BE1307 /* Math.swift in Sources */,
+				1F4A80121C8AAA5E00BE1307 /* SignLines.swift in Sources */,
 				1F4A7F831C8AA69400BE1307 /* Polygon.swift in Sources */,
 				1F4A7F7B1C8AA69400BE1307 /* Layer.swift in Sources */,
 				1F4A7F911C8AA69400BE1307 /* ShapeLayer.swift in Sources */,
@@ -523,6 +616,7 @@
 				1F4A7FD31C8AA69400BE1307 /* WorkSpace.swift in Sources */,
 				1F4A7F9D1C8AA69400BE1307 /* UIImage+Color.swift in Sources */,
 				1F4A7F5B1C8AA69400BE1307 /* AudioPlayer.swift in Sources */,
+				1F4A800F1C8AAA5E00BE1307 /* MenuRings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,14 +647,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		1F4A7FD91C8AA69400BE1307 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F4A7FDA1C8AA69400BE1307 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -572,13 +658,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -616,13 +712,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -641,6 +747,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -649,10 +756,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = N6JQ46CTL8;
 				INFOPLIST_FILE = Cosmos/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = C4.Cosmos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentWinfaeCRM;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -660,10 +772,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = N6JQ46CTL8;
 				INFOPLIST_FILE = Cosmos/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = C4.Cosmos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = DevelopmentWinfaeCRM;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -711,6 +828,7 @@
 				1F4A7FEC1C8AA69400BE1307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F4A7FED1C8AA69400BE1307 /* Build configuration list for PBXNativeTarget "CosmosTests" */ = {
 			isa = XCConfigurationList;
@@ -719,6 +837,7 @@
 				1F4A7FEF1C8AA69400BE1307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

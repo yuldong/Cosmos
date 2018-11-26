@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -106,7 +106,7 @@ public struct Point: Equatable, CustomStringConvertible {
 ///
 ///  - parameter lhs: a Point to translate
 ///  - parameter rhs: a Vector whose values will be applied to the point
-public func += (inout lhs: Point, rhs: Vector) {
+public func += ( lhs: inout Point, rhs: Vector) {
     lhs.x += rhs.x
     lhs.y += rhs.y
 }
@@ -115,7 +115,7 @@ public func += (inout lhs: Point, rhs: Vector) {
 ///
 ///  - parameter lhs: a Point to translate
 ///  - parameter rhs: a Vector whose values will be applied to the point
-public func -= (inout lhs: Point, rhs: Vector) {
+public func -= ( lhs: inout Point, rhs: Vector) {
     lhs.x -= rhs.x
     lhs.y -= rhs.y
 }

@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -42,8 +42,8 @@ public class Line: Polygon {
         }
 
         let p = Path()
-        p.moveToPoint(endPoints.0)
-        p.addLineToPoint(endPoints.1)
+        p.moveToPoint(point: endPoints.0)
+        p.addLineToPoint(point: endPoints.1)
         path = p
         adjustToFitPath()
     }
@@ -121,9 +121,9 @@ public class Line: Polygon {
         super.init(firstTwo)
 
         let path = Path()
-        path.moveToPoint(points[0])
+        path.moveToPoint(point: points[0])
         for i in 1..<points.count {
-            path.addLineToPoint(points[i])
+            path.addLineToPoint(point: points[i])
         }
 
         adjustToFitPath()
@@ -167,7 +167,7 @@ public class Line: Polygon {
     }
 
     private var pauseUpdates = false
-    func batchUpdates(updates: Void -> Void) {
+    func batchUpdates(updates: () -> Void) {
         pauseUpdates = true
         updates()
         pauseUpdates = false

@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -87,7 +87,7 @@ public class Curve: Shape {
     }
 
     private var pauseUpdates = false
-    func batchUpdates(updates: Void -> Void) {
+    func batchUpdates(updates: (() -> Void)) {
         pauseUpdates = true
         updates()
         pauseUpdates = false
@@ -99,15 +99,10 @@ public class Curve: Shape {
             return
         }
 
-        let curve = CGPathCreateMutable()
-        CGPathMoveToPoint(curve, nil,
-            CGFloat(endPoints.0.x), CGFloat(endPoints.0.y))
-        CGPathAddCurveToPoint(curve, nil,
-            CGFloat(controlPoints.0.x), CGFloat(controlPoints.0.y),
-            CGFloat(controlPoints.1.x), CGFloat(controlPoints.1.y),
-            CGFloat(endPoints.1.x), CGFloat(endPoints.1.y))
-
-        self.frame = Rect(CGPathGetBoundingBox(curve))
+        let curve = CGMutablePath.init()
+        curve.move(to: CGPoint.init(x: CGFloat(endPoints.0.x), y: CGFloat(endPoints.0.y)))
+        curve.addCurve(to: CGPoint(x: CGFloat(endPoints.1.x), y: CGFloat(endPoints.1.y)), control1: CGPoint(x: CGFloat(controlPoints.0.x), y: CGFloat(controlPoints.0.y)), control2: CGPoint(x: CGFloat(controlPoints.1.x), y: CGFloat(controlPoints.1.y)))
+        self.frame = Rect(curve.boundingBox)
         self.path = Path(path: curve)
         adjustToFitPath()
     }

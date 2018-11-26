@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -37,25 +37,25 @@ public enum FillRule {
 /// A Path is a sequence of geometric segments which can be straight lines or curves.
 @IBDesignable
 public class Path: Equatable {
-    internal var internalPath: CGMutablePathRef = CGPathCreateMutable()
+    internal var internalPath: CGMutablePath = CGMutablePath.init()
 
     ///  Initializes an empty Path.
     public init() {
-        internalPath = CGPathCreateMutable()
-        CGPathMoveToPoint(internalPath, nil, 0, 0)
+        internalPath = CGMutablePath.init()
+        internalPath.move(to: CGPoint.init(x: 0.0, y: 0.0))
     }
 
     ///  Initializes a new Path from an existing CGPathRef.
     ///
     ///  - parameter path: a previously initialized CGPathRef
-    public init(path: CGPathRef) {
-        internalPath = CGPathCreateMutableCopy(path)!
+    public init(path: CGPath) {
+        internalPath = path.mutableCopy()!
     }
 
     /// Determine if the path is empty
     /// - returns: A boolean, `false` if the path contains no points, otherwise `true`
     public func isEmpty() -> Bool {
-        return CGPathIsEmpty(internalPath)
+        return internalPath.isEmpty
     }
 
     /// Return the path bounding box. The path bounding box is the smallest rectangle completely enclosing all points
@@ -63,7 +63,7 @@ public class Path: Equatable {
     /// return `CGRectNull`.
     /// - returns: A rectangle that represents the path bounding box of the specified path
     public func boundingBox() -> Rect {
-        return Rect(CGPathGetPathBoundingBox(internalPath))
+        return Rect(internalPath.boundingBox)
     }
 
     /// Return true if `point` is contained in `path`; false otherwise. A point is contained in a path if it is inside the
@@ -74,17 +74,17 @@ public class Path: Equatable {
     /// - parameter fillRule: The fill rule to use when testing for containment.
     /// - returns: `true` if `point` is inside the path, `false` otherwise.
     public func containsPoint(point: Point, fillRule: FillRule = .NonZero) -> Bool {
-        return CGPathContainsPoint(internalPath, nil, CGPoint(point), fillRule == .EvenOdd)
+        return internalPath.contains(CGPoint(point), using: CGPathFillRule.evenOdd)
     }
 
     /// Create a copy of the path
     /// - returns: A new copy of the specified path.
     public func copy() -> Path {
-        return Path(path: CGPathCreateMutableCopy(internalPath)!)
+        return Path(path: internalPath.mutableCopy()!)
     }
 
     /// A CGPathRef representation of the receiver's path.
-    public var CGPath: CGPathRef {
+    public var CGPath: CGPath {
         get {
             return internalPath
         }
@@ -96,7 +96,7 @@ public class Path: Equatable {
 /// - parameter right: the second path to compare
 /// - returns: a boolean, `true` if the patrhs are equal, otherwise `false`
 public func == (left: Path, right: Path) -> Bool {
-    return CGPathEqualToPath(left.internalPath, right.internalPath)
+    return left.internalPath == right.internalPath
 }
 
 extension Path {
@@ -104,23 +104,23 @@ extension Path {
     /// Return the current point of the current subpath.
     public var currentPoint: Point {
         get {
-            return Point(CGPathGetCurrentPoint(internalPath))
+            return Point(internalPath.currentPoint)
         }
         set(point) {
-            moveToPoint(point)
+            moveToPoint(point: point)
         }
     }
 
     /// Move the current point of the current subpath.
     /// - parameter point: A Point
     public func moveToPoint(point: Point) {
-        CGPathMoveToPoint(internalPath, nil, CGFloat(point.x), CGFloat(point.y))
+        internalPath.move(to: CGPoint.init(x: CGFloat(point.x), y: CGFloat(point.y)))
     }
 
     /// Append a straight-line segment fron the current point to `point` and move the current point to `point`.
     /// - parameter point: A Point
     public func addLineToPoint(point: Point) {
-        CGPathAddLineToPoint(internalPath, nil, CGFloat(point.x), CGFloat(point.y))
+        internalPath.addLine(to: CGPoint.init(x: CGFloat(point.x), y: CGFloat(point.y)))
     }
 
     /// Append a quadratic curve from the current point to `point` with control point `control` and move the current
@@ -128,7 +128,7 @@ extension Path {
     /// - parameter control: A Point used to shape the curve
     /// - parameter point: A Point
     public func addQuadCurveToPoint(point: Point, control: Point) {
-        CGPathAddQuadCurveToPoint(internalPath, nil, CGFloat(control.x), CGFloat(control.y), CGFloat(point.x), CGFloat(point.y))
+        internalPath.addQuadCurve(to: CGPoint(point), control: CGPoint(control))
     }
 
     /// Append a cubic Bézier curve from the current point to `point` with control points `control1` and `control2`
@@ -137,18 +137,18 @@ extension Path {
     /// - parameter control2: A Point used to shape the curve
     /// - parameter point: A Point
     public func addCurveToPoint(point: Point, control1: Point, control2: Point) {
-        CGPathAddCurveToPoint(internalPath, nil, CGFloat(control1.x), CGFloat(control1.y), CGFloat(control2.x), CGFloat(control2.y), CGFloat(point.x), CGFloat(point.y))
+        internalPath.addCurve(to: CGPoint(point), control1: CGPoint(control1), control2: CGPoint(control2))
     }
 
     /// Append a line from the current point to the starting point of the current subpath and end the subpath.
     public func closeSubpath() {
-        CGPathCloseSubpath(internalPath)
+        internalPath.closeSubpath()
     }
 
     /// Add a rectangle to the path.
     /// - parameter rect: a Rect to add to the path
     public func addRect(rect: Rect) {
-        CGPathAddRect(internalPath, nil, CGRect(rect))
+        internalPath.addRect(CGRect(rect))
     }
 
     /// Add a rounded rectangle to the path. The rounded rectangle coincides with the edges of `rect`. Each corner consists
@@ -159,7 +159,7 @@ extension Path {
     /// - parameter cornerWidth: the width of the shape's rounded corners
     /// - parameter cornerHeight: the width of the shape's rounded corners
     public func addRoundedRect(rect: Rect, cornerWidth: Double, cornerHeight: Double) {
-        CGPathAddRoundedRect(internalPath, nil, CGRect(rect), CGFloat(cornerWidth), CGFloat(cornerHeight))
+        internalPath.addRoundedRect(in: CGRect(rect), cornerWidth: CGFloat(cornerWidth), cornerHeight: CGFloat(cornerHeight))
     }
 
     /// Add an ellipse (an oval) inside `rect`. The ellipse is approximated by a sequence of Bézier curves. The center of
@@ -169,7 +169,7 @@ extension Path {
     /// a "move to" and ends with a "close subpath" --- oriented in the clockwise direction.
     /// - parameter rect: a Rect into which an ellipse will be created and added to the path
     public func addEllipse(rect: Rect) {
-        CGPathAddEllipseInRect(internalPath, nil, CGRect(rect))
+        internalPath.addEllipse(in: CGRect(rect))
     }
 
     /// Add an arc of a circle, possibly preceded by a straight line segment. The arc is approximated by a sequence of
@@ -182,7 +182,7 @@ extension Path {
     /// - parameter delta:      The angle between `startAngle` and the second endpoint of the arc, in radians. If `delta' is positive,
     ///                         then the arc is drawn counter-clockwise; if negative, clockwise.
     public func addRelativeArc(center: Point, radius: Double, startAngle: Double, delta: Double) {
-        CGPathAddRelativeArc(internalPath, nil, CGFloat(center.x), CGFloat(center.y), CGFloat(radius), CGFloat(startAngle), CGFloat(delta))
+        internalPath.addRelativeArc(center: CGPoint(center), radius: CGFloat(radius), startAngle: CGFloat(startAngle), delta: CGFloat(delta))
     }
 
     /// Add an arc of a circle, possibly preceded by a straight line segment. The arc is approximated by a sequence of
@@ -203,7 +203,7 @@ extension Path {
     /// - parameter endAngle:   The angle to the second endpoint of the arc.
     /// - parameter clockwise:  If true the arc is drawn clockwise.
     public func addArc(center: Point, radius: Double, startAngle: Double, endAngle: Double, clockwise: Bool) {
-        CGPathAddArc(internalPath, nil, CGFloat(center.x), CGFloat(center.y), CGFloat(radius), CGFloat(startAngle), CGFloat(endAngle), clockwise)
+        internalPath.addArc(center: CGPoint(center), radius: CGFloat(radius), startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise)
     }
 
     /// Add an arc of a circle, possibly preceded by a straight line segment. The arc is approximated by a sequence of
@@ -213,14 +213,14 @@ extension Path {
     /// - parameter point2: the end point of the arc
     /// - parameter radius: the radius of the arc
     public func addArcToPoint(point1: Point, point2: Point, radius: Double) {
-        CGPathAddArcToPoint(internalPath, nil, CGFloat(point1.x), CGFloat(point1.y), CGFloat(point2.x), CGFloat(point2.y), CGFloat(radius))
+        internalPath.addArc(tangent1End: CGPoint(point1), tangent2End: CGPoint(point2), radius: CGFloat(radius))
     }
 
     /// Append a path.
     ///
     /// - parameter path:      A new Path that is added to the end of the receiver.
     public func addPath(path: Path) {
-        CGPathAddPath(internalPath, nil, path.internalPath)
+        internalPath.addPath(path.internalPath)
     }
 
     /// Transform a path.
@@ -228,6 +228,6 @@ extension Path {
     /// - parameter transform: A Transform to be applied to the receiver.
     public func transform(transform: Transform) {
         var t = transform.affineTransform
-        internalPath = CGPathCreateMutableCopyByTransformingPath(internalPath, &t)!
+        internalPath = internalPath.mutableCopy(using: &t)!
     }
 }

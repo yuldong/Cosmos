@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -43,7 +43,7 @@ public class CanvasController: UIViewController {
     ///  Overrides default behaviour of showing the app's status bar. Defaults to `true`
     ///
     ///  - returns: a boolean value representing whether or not the app should hide its status bar
-    public override func prefersStatusBarHidden() -> Bool {
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
 }

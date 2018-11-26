@@ -1,4 +1,4 @@
-// Copyright © 2015 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -30,7 +30,7 @@ public class GradientLayer: CAGradientLayer {
 
     /// The value of the receiver's current rotation state.
     /// This value is cumulative, and can represent values beyong +/- π
-    public dynamic var rotation: Double {
+    @objc public dynamic var rotation: Double {
         return _rotation
     }
 
@@ -38,17 +38,17 @@ public class GradientLayer: CAGradientLayer {
     ///
     ///  - parameter key: The identifier of the action.
     ///  - returns: the action object assigned to the specified key.
-    public override func actionForKey(key: String) -> CAAction? {
+    public override func action(forKey key: String) -> CAAction? {
         if ShapeLayer.disableActions == true {
             return nil
         }
 
         if key != "colors" {
-            return super.actionForKey(key)
+            return super.action(forKey: key)
         }
 
         let animation: CABasicAnimation
-        if let viewAnimation = ViewAnimation.stack.last as? ViewAnimation where viewAnimation.spring != nil {
+        if let viewAnimation = ViewAnimation.stack.last as? ViewAnimation, viewAnimation.spring != nil {
             animation = CASpringAnimation(keyPath: key)
         } else {
             animation = CABasicAnimation(keyPath: key)

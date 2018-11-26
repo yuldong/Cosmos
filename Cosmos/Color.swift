@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -66,16 +66,16 @@ public let C4Grey    = Color(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.0)
 /// Color internally wraps a CGColorSpaceRef called colorSpace, as well as a CGColorRef. From these two objects Color is able to
 /// properly maintain color data and convert it to / from other color objects such as UIColor, CIColor, Color, etc.
 public class Color {
-    internal var colorSpace: CGColorSpaceRef
-    internal var internalColor: CGColorRef
+    internal var colorSpace: CGColorSpace
+    internal var internalColor: CGColor
 
     /// Initializes and returns a new color object. Defaults to black with 0 opacity (i.e. clear).
     /// ````
     /// let c = Color()
     /// ````
     public init() {
-        colorSpace = CGColorSpaceCreateDeviceRGB()!
-        internalColor = CGColorCreate(colorSpace, [0, 0, 0, 0])!
+        colorSpace = CGColorSpaceCreateDeviceRGB()
+        internalColor = CGColor(colorSpace: colorSpace, components: [0, 0, 0, 0])!
     }
 
     /// Initializes and returns a new Color object based on specified color values.
@@ -87,8 +87,8 @@ public class Color {
     /// - parameter blue:  The blue value for the new color [0.0 ... 1.0]
     /// - parameter alpha: The alpha value for the new color [0.0 ... 1.0]
     public init(red: Double, green: Double, blue: Double, alpha: Double) {
-        colorSpace = CGColorSpaceCreateDeviceRGB()!
-        internalColor = CGColorCreate(colorSpace, [CGFloat(red), CGFloat(green), CGFloat(blue), CGFloat(alpha)])!
+        colorSpace = CGColorSpaceCreateDeviceRGB()
+        internalColor = CGColor(colorSpace: colorSpace, components: [CGFloat(red), CGFloat(green), CGFloat(blue), CGFloat(alpha)])!
     }
 
     /// Initializes and returns a new Color object based on a provided CGColor object.
@@ -96,8 +96,8 @@ public class Color {
     /// let c = Color(UIColor.redColor().CGColor)
     /// ````
     /// - parameter color: A CGColor object that will be used to create a new Color.
-    public init(_ color: CGColorRef) {
-        colorSpace = CGColorSpaceCreateDeviceRGB()!
+    public init(_ color: CGColor) {
+        colorSpace = CGColorSpaceCreateDeviceRGB()
         internalColor = color
     }
 
@@ -107,7 +107,7 @@ public class Color {
     /// ````
     /// - parameter color: A UIColor object whose components will be extrated to create a new Color.
     public convenience init(_ color: UIColor) {
-        self.init(color.CGColor)
+        self.init(color.cgColor)
     }
 
     ///  Initializes and returns a new Color object made up of a repeating pattern based on a specified Image.
@@ -149,7 +149,7 @@ public class Color {
     /// - returns: An array of 4 Double values in the range [0.0 ... 1.0]
     public var components: [Double] {
         get {
-            let floatComponents = CGColorGetComponents(internalColor)
+            let floatComponents = internalColor.components!
             return [
                 Double(floatComponents[0]),
                 Double(floatComponents[1]),
@@ -164,7 +164,7 @@ public class Color {
                 CGFloat(newValue[2]),
                 CGFloat(newValue[3]),
             ]
-            internalColor = CGColorCreate(colorSpace, floatComponents)!
+            internalColor = CGColor(colorSpace: colorSpace, components: floatComponents)!
         }
     }
 
@@ -234,7 +234,7 @@ public class Color {
     /// let cg = c.CGColor
     /// ````
     /// - returns: CGColorRef object that matches the color's `internalColor` property
-    public var CGColor: CGColorRef {
+    public var color: CGColor {
         get {
             return internalColor
         }
@@ -257,7 +257,7 @@ public extension UIColor {
     /// Initializes a UIColor object from a Color object.
     /// - parameter color: The C4 color object.
     public convenience init?(_ color: Color) {
-        self.init(CGColor: color.CGColor)
+        self.init(cgColor: color.color)
     }
 }
 
@@ -265,6 +265,6 @@ public extension CIColor {
     /// Initializes a CIColor object from a Color object.
     /// - parameter color: The C4 color object.
     public convenience init(_ color: Color) {
-        self.init(CGColor: color.CGColor)
+        self.init(cgColor: color.color)
     }
 }

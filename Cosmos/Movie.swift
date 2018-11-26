@@ -1,4 +1,4 @@
-// Copyright © 2014 C4
+// Copyright © 2016 C4
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -96,10 +96,10 @@ public class Movie: View {
             guard let p = player else {
                 return false
             }
-            return p.muted
+            return p.isMuted
         }
         set {
-            player?.muted = newValue
+            player?.isMuted = newValue
         }
     }
 
@@ -127,7 +127,7 @@ public class Movie: View {
     /// - returns: A Double value representing the cumulative rotation of the view, measured in Radians.
     public override var rotation: Double {
         get {
-            if let number = movieLayer.valueForKeyPath(Layer.rotationKey) as? NSNumber {
+            if let number = movieLayer.value(forKeyPath: Layer.rotationKey) as? NSNumber {
                 return number.doubleValue
             }
             return  0.0
@@ -142,19 +142,19 @@ public class Movie: View {
     /// - parameter filename:	The name of the movie file included in your project.
     public convenience init?(_ filename: String) {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("Couldn't set up AVAudioSession")
         }
 
-        guard let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil) else {
+        guard let url = Bundle.main.url(forResource: filename, withExtension: nil) else {
             print("Couldn't retrieve url for: \(filename)")
             return nil
         }
 
-        let asset = AVAsset(URL: url)
-        let tracks = asset.tracksWithMediaType(AVMediaTypeVideo)
+        let asset = AVAsset(url: url)
+        let tracks = asset.tracks(withMediaType: AVMediaType.video)
 
         //grab the movie track and size
         let movieTrack = tracks[0]
@@ -164,18 +164,18 @@ public class Movie: View {
         self.filename = filename
         //initialize player with item
         let newPlayer = AVQueuePlayer(playerItem: AVPlayerItem(asset: asset))
-        newPlayer.actionAtItemEnd = .Pause
+        newPlayer.actionAtItemEnd = .pause
         currentItem = newPlayer.currentItem
         player = newPlayer
 
         //runs an overrideable method for handling the end of the movie
-        on(event: AVPlayerItemDidPlayToEndTimeNotification) {
+        on(event: NSNotification.Name.AVPlayerItemDidPlayToEndTime.rawValue) {
             self.handleReachedEnd()
         }
 
         //movie view's player
         movieLayer.player = player
-        movieLayer.videoGravity = AVLayerVideoGravityResize
+        movieLayer.videoGravity = AVLayerVideoGravity.resize
 
         originalSize = self.size
     }
@@ -191,7 +191,7 @@ public class Movie: View {
     public convenience init?(copy original: Movie) {
         self.init(original.filename)
         self.frame = original.frame
-        copyViewStyle(original)
+        copyViewStyle(viewToCopy: original)
     }
 
     /// Begins playback of the current item.
@@ -224,14 +224,14 @@ public class Movie: View {
             print("The current movie's player is not properly initialized")
             return
         }
-        p.seekToTime(CMTimeMake(0, 1))
+        p.seek(to: CMTimeMake(value: 0, timescale: 1))
         p.pause()
     }
 
     /// The action to perform at the end of playback.
     ///
     /// - parameter action: A block of code to execute at the end of playback.
-    public func reachedEnd(action: ()->()) {
+    public func reachedEnd(action: @escaping ()->()) {
         reachedEndAction = action
     }
 
