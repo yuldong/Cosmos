@@ -66,7 +66,7 @@ public class RegularPolygon: Polygon {
     ///
     /// Default values are are sides = 6 (i.e. a hexagon), phase = 0.
     convenience public init(center: Point, radius: Double = 50.0, sides: Int = 6, phase: Double = 0.0) {
-        let dΘ = 2.0*M_PI / Double(sides)
+        let dΘ = 2.0 * Double.pi / Double(sides)
         var pointArray = [Point]()
         for i in 0..<sides {
             let Θ = phase + dΘ * Double(i)

@@ -45,6 +45,21 @@ public class View: NSObject {
             animatableLayer.setValue(newValue, forKeyPath: Layer.rotationKey)
         }
     }
+    
+    /// Creates a flattened image of the receiver and its subviews / layers.
+    /// - returns: A new Image
+    public func render() -> Image? {
+        guard let l = layer else {
+            print("Could not retrieve layer for current object: \(self)")
+            return nil
+        }
+        UIGraphicsBeginImageContextWithOptions(CGSize(size), false, UIScreen.main.scale)
+        let context = UIGraphicsGetCurrentContext()!
+        l.render(in: context)
+        let uiimage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return Image(uiimage: uiimage!)
+    }
 
     /// The view that contains the receiver's animatable layer.
     internal var layerView: LayerView {
@@ -56,7 +71,7 @@ public class View: NSObject {
             return self.layer as! Layer // swiftlint:disable:this force_cast
         }
 
-        override class func layerClass() -> AnyClass {
+        class func layerClass() -> AnyClass {
             return Layer.self
         }
     }
@@ -127,7 +142,7 @@ public class View: NSObject {
     }
 
     /// Returns the receiver's layer.
-    public dynamic var layer: CALayer? {
+    @objc public dynamic var layer: CALayer? {
         return view.layer
     }
 
@@ -387,7 +402,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a swipe gesture.
     /// - returns: A UISwipeGestureRecognizer that can be customized.
-    public func addSwipeGestureRecognizer(action: SwipeAction) -> UISwipeGestureRecognizer {
+    public func addSwipeGestureRecognizer(action: @escaping SwipeAction) -> UISwipeGestureRecognizer {
         let gestureRecognizer = UISwipeGestureRecognizer(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -402,7 +417,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a screen edge pan gesture.
     /// - returns: A UIScreenEdgePanGestureRecognizer that can be customized.
-    public func addScreenEdgePanGestureRecognizer(action: ScreenEdgePanAction) -> UIScreenEdgePanGestureRecognizer {
+    public func addScreenEdgePanGestureRecognizer(action: @escaping ScreenEdgePanAction) -> UIScreenEdgePanGestureRecognizer {
         let gestureRecognizer =  UIScreenEdgePanGestureRecognizer.init(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
         return gestureRecognizer
@@ -551,7 +566,12 @@ public class View: NSObject {
     /// - parameter from: The view whose coordinate system the point is to be converted from
     /// - returns: A `Point` whose values have been translated into the receiver's coordinate system.
     public func convert(point: Point, from: View) -> Point {
-        return Point(view.convert(CGPoint(point), from: from.view.coordinateSpace)))
+        if #available(iOS 12.0, *) {
+            return Point(view.convert(CGPoint(point), from: from.view.coordinateSpace))
+        } else {
+            // Fallback on earlier versions
+            return Point(view.convert(CGPoint(point), from: from.view))
+        }
     }
 
     //MARK: - Positioning

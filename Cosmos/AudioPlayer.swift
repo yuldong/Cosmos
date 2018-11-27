@@ -121,7 +121,7 @@ public class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         get {
             return Double(player.pan)
         } set(val) {
-            player.pan = clamp(Float(val), min: -1.0, max: 1.0)
+            player.pan = Float(clamp(val: val, min: -1.0, max: 1.0))
         }
     }
 

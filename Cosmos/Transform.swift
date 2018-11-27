@@ -25,7 +25,7 @@ import QuartzCore
 ///
 ///  Transform can translate, rotate, scale.
 public struct Transform: Equatable {
-    private var matrix = [Double](repeating: 0, count: 16)
+    public var matrix = [Double](repeating: 0, count: 16)
 
     public subscript(row: Int, col: Int) -> Double {
         get {
@@ -305,14 +305,20 @@ public func inverse(t: Transform) -> Transform? {
     var matrix: [__CLPK_doublereal] = t.matrix
 
     // LU factorisation
-    dgetrf_(&N, &N, &matrix, &N, &pivot, &error)
+    withUnsafeMutablePointer(to: &N) {
+        dgetrf_($0, $0, &matrix, $0, &pivot, &error)
+    }
+    
     if error != 0 {
         return nil
     }
 
     // matrix inversion
     var workspace = [__CLPK_doublereal](repeating: 0, count: 4)
-    dgetri_(&N, &matrix, &N, &pivot, &workspace, &N, &error)
+    withUnsafeMutablePointer(to: &N) {
+        dgetri_($0, &matrix, $0, &pivot, &workspace, $0, &error)
+    }
+    
     if error != 0 {
         return nil
     }

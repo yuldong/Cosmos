@@ -47,7 +47,7 @@ public class ImageLayer: CALayer {
         animation.fromValue = value(forKey: key)
 
         if key == Layer.rotationKey {
-            if let layer = presentation() as? ShapeLayer {
+            if let layer = presentation() {
                 animation.fromValue = layer.value(forKey: key)
             }
         }
@@ -107,7 +107,7 @@ public class ImageLayer: CALayer {
     /// Reloads the content of this layer.
     /// Do not call this method directly.
     public override func display() {
-        guard let presentation = presentation() as? ImageLayer else {
+        guard let presentation = presentation() else {
             return
         }
         setValue(presentation._rotation, forKeyPath: "transform.rotation.z")

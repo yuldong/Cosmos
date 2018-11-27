@@ -306,6 +306,7 @@ public func inset(r: Rect, dx: Double, dy: Double) -> Rect {
 public extension CGRect {
     /// Initializes a CGRect from a Rect
     public init(_ rect: Rect) {
+        self.init()
         origin = CGPoint(rect.origin)
         size = CGSize(rect.size)
     }

@@ -118,7 +118,7 @@ public class Movie: View {
             return self.layer as! PlayerLayer // swiftlint:disable:this force_cast
         }
 
-        override class func layerClass() -> AnyClass {
+        class func layerClass() -> AnyClass {
             return PlayerLayer.self
         }
     }
@@ -142,7 +142,7 @@ public class Movie: View {
     /// - parameter filename:	The name of the movie file included in your project.
     public convenience init?(_ filename: String) {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("Couldn't set up AVAudioSession")

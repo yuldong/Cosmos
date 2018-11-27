@@ -27,7 +27,7 @@ public class Shape: View {
             return self.layer as! ShapeLayer // swiftlint:disable:this force_cast
         }
 
-        override class func layerClass() -> AnyClass {
+        class func layerClass() -> AnyClass {
             return ShapeLayer.self
         }
 
@@ -135,8 +135,7 @@ public class Shape: View {
 
             UIGraphicsBeginImageContextWithOptions(CGSize(b.size), false, UIScreen.main.scale)
             let context = UIGraphicsGetCurrentContext()
-
-            CGContextDrawTiledImage(context, CGRect(b), gim)
+            context!.draw(gim!, in: CGRect(b), byTiling: true)
             let uiimage = UIGraphicsGetImageFromCurrentImageContext()
             let uicolor = UIColor(patternImage: uiimage!)
             fillColor = Color(uicolor)
@@ -343,6 +342,27 @@ public class Shape: View {
         } else {
             return CGSize()
         }
+    }
+    
+    /// Creates a flattened image of the receiver and its subviews / layers.
+    /// This override takes into consideration the lineWidth of the receiver.
+    /// - returns: A new Image
+    public override func render() -> Image? {
+        var s = CGSize(size)
+        var inset: CGFloat = 0
+        if lineWidth > 0, let sc = strokeColor, sc.alpha > 0.0 {
+            inset = CGFloat(lineWidth / 2.0)
+            s = CGRect(frame).insetBy(dx: -inset, dy: -inset).size
+        }
+        
+        let scale = CGFloat(UIScreen.main.scale)
+        UIGraphicsBeginImageContextWithOptions(s, false, scale)
+        let context = UIGraphicsGetCurrentContext()!
+        context.translateBy(x: CGFloat(-bounds.origin.x)+inset, y: CGFloat(-bounds.origin.y)+inset)
+        shapeLayer.render(in: context)
+        let uiimage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return Image(uiimage: uiimage!)
     }
 
     /// Returns true if there is no path.

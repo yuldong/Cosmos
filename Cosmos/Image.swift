@@ -38,7 +38,7 @@ public class Image: View, NSCopying {
             return self.layer as! ImageLayer // swiftlint:disable:this force_cast
         }
 
-        override class func layerClass() -> AnyClass {
+        class func layerClass() -> AnyClass {
             return ImageLayer.self
         }
     }
@@ -253,22 +253,22 @@ public class Image: View, NSCopying {
         assert(pixels.count == Int(width * height))
 
         var data = pixels // Copy to mutable []
-        let providerRef = CGDataProviderCreateWithCFData(
-            NSData(bytes: &data, length: data.count * size(Pixel))
+        let providerRef = CGDataProvider(
+            data: NSData(bytes: &data, length: data.count * MemoryLayout.size(ofValue: Pixel.self))
         )
 
-        let cgim = CGImageCreate(
-            width,
-            height,
-            bitsPerComponent,
-            bitsPerPixel,
-            width * Int(size(Pixel)),
-            rgbColorSpace,
-            bitmapInfo,
-            providerRef,
-            nil,
-            true,
-            CGColorRenderingIntent.RenderingIntentDefault
+        let cgim = CGImage(
+            width: width,
+            height: height,
+            bitsPerComponent: bitsPerComponent,
+            bitsPerPixel: bitsPerPixel,
+            bytesPerRow: width * Int(MemoryLayout.size(ofValue: Pixel.self)),
+            space: rgbColorSpace,
+            bitmapInfo: bitmapInfo,
+            provider: providerRef!,
+            decode: nil,
+            shouldInterpolate: true,
+            intent: CGColorRenderingIntent.defaultIntent
         )
 
         self.init(cgimage: cgim!)

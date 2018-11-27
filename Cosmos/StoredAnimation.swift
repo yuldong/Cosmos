@@ -51,8 +51,8 @@ public class StoredAnimation: Animation {
             timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         }
 
-        autoreverses == true ? options.unionInPlace(.Autoreverse) : options.subtractInPlace(.Autoreverse)
-        repeatCount > 0 ? options.unionInPlace(.Repeat) : options.subtractInPlace(.Repeat)
+        autoreverses == true ? options.formUnion(UIView.AnimationOptions.autoreverse) : options.subtract(UIView.AnimationOptions.autoreverse)
+        repeatCount > 0 ? options.formUnion(.repeat) : options.subtract(.repeat)
 
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             ViewAnimation.stack.append(self)

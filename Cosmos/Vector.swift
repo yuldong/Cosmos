@@ -320,7 +320,8 @@ public func - (lhs: Vector, rhs: Vector) -> Vector {
     return Vector(x: lhs.x - rhs.x, y: lhs.y - rhs.y, z: lhs.z - rhs.z)
 }
 
-infix operator ⋅ { associativity left precedence 150 }
+infix operator ⋅: MultiplicationPrecedence
+//infix operator ⋅ { associativity left precedence 150 }
 
 /// Returns a new vector that is the dot product of the both input vectors. **Use this instead of v.dot(v)**
 ///

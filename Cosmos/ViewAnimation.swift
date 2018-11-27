@@ -120,15 +120,15 @@ public class ViewAnimation: Animation {
         }
 
         if autoreverses == true {
-            options.unionInPlace(.Autoreverse)
+            options.formUnion(.autoreverse)
         } else {
-            options.subtractInPlace(.Autoreverse)
+            options.subtract(.autoreverse)
         }
 
         if repeatCount > 0 {
-            options.unionInPlace(.Repeat)
+            options.formUnion(.repeat)
         } else {
-            options.subtractInPlace(.Repeat)
+            options.subtract(.repeat)
         }
         return options
     }

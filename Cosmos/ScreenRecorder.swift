@@ -33,9 +33,11 @@ public class ScreenRecorder: NSObject, RPPreviewViewControllerDelegate {
 
     public func start() {
         preview = nil
-        recorder.startRecording(withMicrophoneEnabled: enableMicrophone) { error in
-            if let error = error {
-                print("Start Recording Error: \(error.localizedDescription)")
+        if recorder.isMicrophoneEnabled {
+            recorder.startRecording { error in
+                if let error = error {
+                    print("Start Recording Error: \(error.localizedDescription)")
+                }
             }
         }
     }

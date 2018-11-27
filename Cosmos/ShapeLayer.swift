@@ -127,7 +127,7 @@ extension CABasicAnimation {
     ///  Configures basic options for a CABasicAnimation.
     ///
     ///  The options set in this method are favorable for the inner workings of C4's action behaviours.
-    public func configureOptions() {
+    @objc public func configureOptions() {
         if let animation = ViewAnimation.currentAnimation {
             self.autoreverses = animation.autoreverses
             self.repeatCount = Float(animation.repeatCount)
@@ -141,7 +141,7 @@ extension CASpringAnimation {
     ///  Configures basic options for a CABasicAnimation.
     ///
     ///  The options set in this method are favorable for the inner workings of C4's animation behaviours.
-    public override func configureOptions() {
+    @objc public override func configureOptions() {
         super.configureOptions()
         if let animation = ViewAnimation.currentAnimation as? ViewAnimation, let spring = animation.spring {
             mass = CGFloat(spring.mass)

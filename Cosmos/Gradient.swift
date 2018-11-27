@@ -26,7 +26,7 @@ public class Gradient: View {
             return self.layer as! GradientLayer // swiftlint:disable:this force_cast
         }
 
-        override class func layerClass() -> AnyClass {
+        class func layerClass() -> AnyClass {
             return GradientLayer.self
         }
     }

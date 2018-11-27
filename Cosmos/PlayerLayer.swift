@@ -58,7 +58,7 @@ public class PlayerLayer: AVPlayerLayer {
         animation.fromValue = value(forKey: key)
 
         if key == Layer.rotationKey {
-            if let layer = presentation() as? ShapeLayer {
+            if let layer = presentation() {
                 animation.fromValue = layer.value(forKey: key)
             }
         }

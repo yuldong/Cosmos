@@ -59,7 +59,6 @@
 		1F4A7FA31C8AA69400BE1307 /* View+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FA21C8AA69400BE1307 /* View+Animation.swift */; };
 		1F4A7FA51C8AA69400BE1307 /* View+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FA41C8AA69400BE1307 /* View+Border.swift */; };
 		1F4A7FA71C8AA69400BE1307 /* View+KeyValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FA61C8AA69400BE1307 /* View+KeyValues.swift */; };
-		1F4A7FA91C8AA69400BE1307 /* View+Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FA81C8AA69400BE1307 /* View+Render.swift */; };
 		1F4A7FAB1C8AA69400BE1307 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FAA1C8AA69400BE1307 /* View+Shadow.swift */; };
 		1F4A7FAD1C8AA69400BE1307 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FAC1C8AA69400BE1307 /* ViewAnimation.swift */; };
 		1F4A7FAF1C8AA69400BE1307 /* Wedge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FAE1C8AA69400BE1307 /* Wedge.swift */; };
@@ -165,7 +164,6 @@
 		1F4A7FA21C8AA69400BE1307 /* View+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Animation.swift"; sourceTree = "<group>"; };
 		1F4A7FA41C8AA69400BE1307 /* View+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Border.swift"; sourceTree = "<group>"; };
 		1F4A7FA61C8AA69400BE1307 /* View+KeyValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+KeyValues.swift"; sourceTree = "<group>"; };
-		1F4A7FA81C8AA69400BE1307 /* View+Render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Render.swift"; sourceTree = "<group>"; };
 		1F4A7FAA1C8AA69400BE1307 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
 		1F4A7FAC1C8AA69400BE1307 /* ViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
 		1F4A7FAE1C8AA69400BE1307 /* Wedge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wedge.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				1F4A7FA21C8AA69400BE1307 /* View+Animation.swift */,
 				1F4A7FA41C8AA69400BE1307 /* View+Border.swift */,
 				1F4A7FA61C8AA69400BE1307 /* View+KeyValues.swift */,
-				1F4A7FA81C8AA69400BE1307 /* View+Render.swift */,
 				1F4A7FAA1C8AA69400BE1307 /* View+Shadow.swift */,
 				1F4A7FAC1C8AA69400BE1307 /* ViewAnimation.swift */,
 				1F4A7FAE1C8AA69400BE1307 /* Wedge.swift */,
@@ -599,7 +596,6 @@
 				1F4A7F571C8AA69400BE1307 /* Animation.swift in Sources */,
 				1F4A7F691C8AA69400BE1307 /* Generator.swift in Sources */,
 				1F4A7FA71C8AA69400BE1307 /* View+KeyValues.swift in Sources */,
-				1F4A7FA91C8AA69400BE1307 /* View+Render.swift in Sources */,
 				1F4A800B1C8AAA5E00BE1307 /* InfoPanel.swift in Sources */,
 				1F4A7FC31C8AA69400BE1307 /* ColorBurn.swift in Sources */,
 				1F4A7F6B1C8AA69400BE1307 /* Gradient.swift in Sources */,
@@ -759,7 +755,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N6JQ46CTL8;
 				INFOPLIST_FILE = Cosmos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -775,7 +771,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N6JQ46CTL8;
 				INFOPLIST_FILE = Cosmos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
