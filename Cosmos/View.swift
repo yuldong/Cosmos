@@ -71,8 +71,10 @@ public class View: NSObject {
             return self.layer as! Layer // swiftlint:disable:this force_cast
         }
 
-        class func layerClass() -> AnyClass {
-            return Layer.self
+        override class var layerClass: AnyClass {
+            get {
+                return Layer.self
+            }
         }
     }
 

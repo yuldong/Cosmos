@@ -37,9 +37,10 @@ public class Image: View, NSCopying {
         var imageLayer: ImageLayer {
             return self.layer as! ImageLayer // swiftlint:disable:this force_cast
         }
-
-        class func layerClass() -> AnyClass {
-            return ImageLayer.self
+        override class var layerClass: AnyClass {
+            get {
+                return ImageLayer.self
+            }
         }
     }
 

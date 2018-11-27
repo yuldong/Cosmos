@@ -118,9 +118,12 @@ public class Movie: View {
             return self.layer as! PlayerLayer // swiftlint:disable:this force_cast
         }
 
-        class func layerClass() -> AnyClass {
-            return PlayerLayer.self
+        override class var layerClass: AnyClass {
+            get {
+                return PlayerLayer.self
+            }
         }
+
     }
 
     /// The current rotation value of the view. Animatable.

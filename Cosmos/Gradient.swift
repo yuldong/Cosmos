@@ -26,9 +26,12 @@ public class Gradient: View {
             return self.layer as! GradientLayer // swiftlint:disable:this force_cast
         }
 
-        class func layerClass() -> AnyClass {
-            return GradientLayer.self
+        override class var layerClass: AnyClass {
+            get {
+                return GradientLayer.self
+            }
         }
+        
     }
 
     ///The background layer of the receiver.

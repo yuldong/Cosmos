@@ -26,9 +26,11 @@ public class Shape: View {
         var shapeLayer: ShapeLayer {
             return self.layer as! ShapeLayer // swiftlint:disable:this force_cast
         }
-
-        class func layerClass() -> AnyClass {
-            return ShapeLayer.self
+        
+        override class var layerClass: AnyClass {
+            get {
+                return ShapeLayer.self
+            }
         }
 
         override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
