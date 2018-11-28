@@ -24,49 +24,41 @@ let cosmosblue = Color(red: 0.094, green: 0.271, blue: 1.0, alpha: 1.0)
 let cosmosbkgd = Color(red: 0.078, green: 0.118, blue: 0.306, alpha: 1.0)
 
 class WorkSpace: CanvasController {
-    var layers = [InfiniteScrollView]()
+    let infiniteScrollView = InfiniteScrollView()
     override func setup() {
         //work your magic here
-        repeat {
-            let layer = InfiniteScrollView.init(frame: view.frame)
-            layer.contentSize = CGSize.init(width: layer.frame.size.width * 10, height: 0)
-            canvas.add(subview: layer)
-            layers.append(layer)
-            
-            canvas.backgroundColor = black
-            let starCount = layers.count * 15
-            for _ in 0..<starCount {
-                let img = Image("6smallStar")!
-                img.constrainsProportions = true
-                img.width *= 0.1 * Double(layers.count + 1)
-                img.center = Point(Double(layer.contentSize.width) * random01(), canvas.height * random01())
-                layer.add(subview: img)
-            }
-            
-//            var center = Point(24, canvas.height / 2.0)
-//            let layNumber = 10 - layers.count
-//            let font = Font(name: "AvenirNext-DemiBold", size: Double(layers.count + 1) * 8.0)!
-//            repeat {
-//                let label = TextShape(text: "\(layNumber)", font: font)!
-//                label.center = center
-//                center.x += 130
-//                layer.add(subview: label)
-//            } while center.x < Double(layer.contentSize.width)
-        } while layers.count < 10
-        
-        if let top = layers.last {
-            var c = 0
-            top.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.new, context: &c)
-        }
+        infiniteScrollView.frame = CGRect(canvas.frame)
+        canvas.add(subview: infiniteScrollView)
+        addVisualIndicators()
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        for i in 0..<layers.count - 1 {
-            let layer = self.layers[i]
-            let mod = 0.1 * CGFloat(i + 1)
-            if let x = layers.last?.contentOffset.x {
-                layer.contentOffset  = CGPoint.init(x: x*mod, y: 0.0)
-            }
+    func addVisualIndicators() -> Void {
+        let count = 20
+        let gap = 150.0
+        let dx = 40.0
+        let width = Double(count + 1) * gap  + dx
+        for x in 0...count {
+            let point = Point(Double(x) * gap + dx, canvas.center.y)
+            createIndicator(text: "\(x)", at: point)
         }
+        
+        var x: Int = 0
+        var offset = dx
+        while offset < Double(infiniteScrollView.frame.size.width) {
+            let point = Point(width + offset, canvas.center.y)
+            createIndicator(text: "\(x)", at: point)
+            offset += gap
+            x += 1
+        }
+        
+        infiniteScrollView.contentSize = CGSize.init(width: CGFloat(CGFloat(width) + infiniteScrollView.frame.size.width), height: 0)
     }
+    
+    func createIndicator(text: String, at point: Point) -> Void {
+        let ts = TextShape(text: text)
+        ts?.center = point
+        infiniteScrollView.add(subview: ts)
+    }
+    
+    
 }

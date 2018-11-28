@@ -78,7 +78,6 @@
 		1F4A7FD31C8AA69400BE1307 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD21C8AA69400BE1307 /* WorkSpace.swift */; };
 		1F4A7FD61C8AA69400BE1307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD41C8AA69400BE1307 /* Main.storyboard */; };
 		1F4A7FD81C8AA69400BE1307 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FD71C8AA69400BE1307 /* Images.xcassets */; };
-		1F4A7FE61C8AA69400BE1307 /* CosmosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4A7FE51C8AA69400BE1307 /* CosmosTests.swift */; };
 		1F4A7FF51C8AAA1D00BE1307 /* audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */; };
 		1F4A7FF61C8AAA1D00BE1307 /* audio2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */; };
 		1F4A7FF71C8AAA1D00BE1307 /* menuClose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */; };
@@ -185,8 +184,6 @@
 		1F4A7FD71C8AA69400BE1307 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F4A7FDC1C8AA69400BE1307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F4A7FE11C8AA69400BE1307 /* CosmosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CosmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F4A7FE51C8AA69400BE1307 /* CosmosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosTests.swift; sourceTree = "<group>"; };
-		1F4A7FE71C8AA69400BE1307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
 		1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio2.mp3; sourceTree = "<group>"; };
 		1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuClose.mp3; sourceTree = "<group>"; };
@@ -230,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				1F4A7F3C1C8AA69400BE1307 /* Cosmos */,
-				1F4A7FE41C8AA69400BE1307 /* CosmosTests */,
 				1F4A7F3B1C8AA69400BE1307 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -352,15 +348,6 @@
 				1F4A7FD01C8AA69400BE1307 /* Twirl.swift */,
 			);
 			name = Filters;
-			sourceTree = "<group>";
-		};
-		1F4A7FE41C8AA69400BE1307 /* CosmosTests */ = {
-			isa = PBXGroup;
-			children = (
-				1F4A7FE51C8AA69400BE1307 /* CosmosTests.swift */,
-				1F4A7FE71C8AA69400BE1307 /* Info.plist */,
-			);
-			path = CosmosTests;
 			sourceTree = "<group>";
 		};
 		1F4A7FFA1C8AAA2700BE1307 /* Audio */ = {
@@ -620,7 +607,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F4A7FE61C8AA69400BE1307 /* CosmosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +775,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = C4.CosmosTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cosmos.app/Cosmos";
 			};
 			name = Debug;
@@ -801,6 +788,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = C4.CosmosTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cosmos.app/Cosmos";
 			};
 			name = Release;
