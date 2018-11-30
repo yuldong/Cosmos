@@ -31,6 +31,7 @@ class Stars : CanvasController, UIScrollViewDelegate {
     
     var snapTargets : [CGFloat]!
     override func setup() {
+        canvas.backgroundColor = cosmosbkgd
         scrollviews = [InfiniteScrollView]()
         scrollviews.append(StarsBackground(frame: view.frame, imageName: "0Star", starCount: 20, speed: speeds[0]))
         scrollviews.append(createVignette())

@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="launchbg" translatesAutoresizingMaskIntoConstraints="NO" id="5xp-fX-8Gy">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LoadCOSMOS" translatesAutoresizingMaskIntoConstraints="NO" id="ghN-y3-gsn">
                                 <rect key="frame" x="57" y="298" width="300" height="300"/>
@@ -30,12 +30,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="5xp-fX-8Gy" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="IjQ-Zo-4Ag"/>
                             <constraint firstItem="ghN-y3-gsn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nz5-hn-xpN"/>
                             <constraint firstAttribute="trailing" secondItem="5xp-fX-8Gy" secondAttribute="trailing" id="gao-p5-etX"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5xp-fX-8Gy" secondAttribute="bottom" id="nIs-Xl-0JS"/>
                             <constraint firstItem="ghN-y3-gsn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oqC-3Z-GQp"/>
                             <constraint firstItem="5xp-fX-8Gy" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="sVk-Vu-c2c"/>
-                            <constraint firstItem="5xp-fX-8Gy" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="xXK-l4-KBI"/>
                         </constraints>
                     </view>
                 </viewController>

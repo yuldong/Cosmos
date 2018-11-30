@@ -54,7 +54,7 @@ public class InfoPanel : CanvasController {
     }
     
     func createLink() {
-        let text = TextShape(text: "http://www.c4ios.com/docs", font: Font(name: "Menlo-Regular", size: 24)!)!
+        let text = TextShape(text: "www.c4ios.com", font: Font(name: "Menlo-Regular", size: 24)!)!
         text.fillColor = white
         text.center = Point(canvas.center.x, canvas.height * 5.0 / 6.0)
         
