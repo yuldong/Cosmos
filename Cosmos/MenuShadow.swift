@@ -20,6 +20,25 @@
 import UIKit
 
 public class MenuShadow : CanvasController {
+    var reveal: ViewAnimation?
+    var hide: ViewAnimation?
+    
     public override func setup() {
+        canvas.frame = Rect(UIScreen.main.bounds)
+        canvas.backgroundColor = black
+        canvas.opacity = 0.0
+        createShadowAnimations()
+    }
+    
+    func createShadowAnimations() -> Void {
+        reveal = ViewAnimation(duration: 0.25, animations: {
+            self.canvas.opacity = 0.44
+        })
+        reveal?.curve = .EaseOut
+        
+        hide = ViewAnimation(duration: 0.25, animations: {
+            self.canvas.opacity = 0.0
+        })
+        hide?.curve = .EaseOut
     }
 }

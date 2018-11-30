@@ -21,6 +21,88 @@
 import UIKit
 
 public class InfoPanel : CanvasController {
+    
+    var link: TextShape?
     public override func setup() {
+        canvas.backgroundColor = Color(red: 0, green: 0, blue: 0, alpha: 0.33)
+        self.canvas.opacity = 0.0
+        createLogo()
+        createLabel()
+        createLink()
+        linkGesture()
+        hideGesture()
+    }
+    
+    func createLogo() -> Void {
+        let logo = Image.init("logo")!
+        logo.center = Point(canvas.center.x, canvas.height / 6.0)
+        canvas.add(subview: logo)
+    }
+    
+    func createLabel() {
+        let message = "COSMOS is a lovingly\nbuilt app created\nby the C4 team.\n\n\nWe hope you enjoy\ncruising the COSMOS.\n\n\nYou can learn how\nto build this app\n on our site at:"
+        let text = UILabel()
+        text.font = UIFont(name: "Menlo-Regular", size: 18)
+        text.numberOfLines = 40
+        text.text = message
+        text.textColor = UIColor.white
+        text.textAlignment = .center
+        text.sizeToFit()
+        text.center = CGPoint.init(canvas.center)
+        
+        canvas.add(subview: text)
+    }
+    
+    func createLink() {
+        let text = TextShape(text: "http://www.c4ios.com/docs", font: Font(name: "Menlo-Regular", size: 24)!)!
+        text.fillColor = white
+        text.center = Point(canvas.center.x, canvas.height * 5.0 / 6.0)
+        
+        let a = Point(text.origin.x, text.frame.max.y + 8)
+        let b = Point(a.x + text.width + 1, a.y)
+        
+        let line = Line((a, b))
+        line.lineWidth = 1.0
+        line.strokeColor = C4Pink
+        
+        link = text
+        canvas.add(subview: link)
+        canvas.add(subview: line)
+        
+    }
+    
+    func linkGesture() {
+        let press = link?.addLongPressGestureRecognizer(action: { (locations, center, state) in
+            switch state {
+            case .began, .changed:
+                self.link?.fillColor = C4Pink
+            case .ended:
+                if let l = self.link, l.hitTest(point: center) {
+                    UIApplication.shared.open(URL(string: "http://http://www.c4ios.com/cosmos/")!, options: [:], completionHandler: nil)
+                }
+                fallthrough
+            default:
+                self.link?.fillColor = white
+            }
+        })
+        press?.minimumPressDuration = 0.0
+    }
+    
+    func hideGesture() {
+        canvas.addTapGestureRecognizer { (locations, center, state) in
+            self.hide()
+        }
+    }
+    
+    func hide() -> Void {
+        ViewAnimation(duration: 0.25) {
+            self.canvas.opacity = 0.0
+        }.animate()
+    }
+    
+    func show() -> Void {
+        ViewAnimation(duration: 0.25) {
+            self.canvas.opacity = 1.0
+        }.animate()
     }
 }

@@ -24,41 +24,27 @@ let cosmosblue = Color(red: 0.094, green: 0.271, blue: 1.0, alpha: 1.0)
 let cosmosbkgd = Color(red: 0.078, green: 0.118, blue: 0.306, alpha: 1.0)
 
 class WorkSpace: CanvasController {
-    let infiniteScrollView = InfiniteScrollView()
+    
+    let audio1 = AudioPlayer("audio1.mp3")
+    let audio2 = AudioPlayer("audio2.mp3")
+    
+    let stars = Stars()
+    let menu = Menu()
+    let info = InfoPanel()
     override func setup() {
         //work your magic here
-        infiniteScrollView.frame = CGRect(canvas.frame)
-        canvas.add(subview: infiniteScrollView)
-        addVisualIndicators()
-    }
-    
-    func addVisualIndicators() -> Void {
-        let count = 20
-        let gap = 150.0
-        let dx = 40.0
-        let width = Double(count + 1) * gap  + dx
-        for x in 0...count {
-            let point = Point(Double(x) * gap + dx, canvas.center.y)
-            createIndicator(text: "\(x)", at: point)
-        }
+        canvas.backgroundColor = cosmosbkgd
+        canvas.add(subview: stars.canvas)
+        menu.canvas.center = canvas.center
+        canvas.add(subview: menu.canvas)
+        canvas.add(subview: info.canvas)
+        menu.selectionAction = stars.goto
+        menu.infoAction = info.show
         
-        var x: Int = 0
-        var offset = dx
-        while offset < Double(infiniteScrollView.frame.size.width) {
-            let point = Point(width + offset, canvas.center.y)
-            createIndicator(text: "\(x)", at: point)
-            offset += gap
-            x += 1
-        }
+        audio1?.loops = true
+        audio1?.play()
         
-        infiniteScrollView.contentSize = CGSize.init(width: CGFloat(CGFloat(width) + infiniteScrollView.frame.size.width), height: 0)
+        audio2?.loops = true
+        audio2?.play()
     }
-    
-    func createIndicator(text: String, at point: Point) -> Void {
-        let ts = TextShape(text: text)
-        ts?.center = point
-        infiniteScrollView.add(subview: ts)
-    }
-    
-    
 }

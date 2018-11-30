@@ -20,11 +20,64 @@
 import UIKit
 
 public class SignLines : InfiniteScrollView {
+    var lines: [[Line]]!
+    var currentIndex: Int = 0
+    var currentLines: [Line] {
+        get {
+            let set = lines[currentIndex]
+            return set
+        }
+    }
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        let count = CGFloat.init(AstrologicalSignProvider.sharedInstance.order.count)
+        contentSize = CGSize.init(width: frame.width * (count * gapBetweenSigns + 1), height: 1.0)
+        var signOrder = AstrologicalSignProvider.sharedInstance.order
+        signOrder.append(signOrder.first!)
+        
+        lines = [[Line]]()
+        for i in 0..<signOrder.count {
+            let dx = Double(i) * Double(frame.width * gapBetweenSigns)
+            let t = Transform.makeTranslation(translation: Vector(x: Double(center.x) + dx, y: Double(center.y), z: 0))
+            if let sign = AstrologicalSignProvider.sharedInstance.get(sign: signOrder[i]) {
+                let connections = sign.lines
+                var currentLineSet = [Line]()
+                for points in connections {
+                    var begin = points[0]
+                    begin.transform(t: t)
+                    var end = points[1]
+                    end.transform(t: t)
+                    
+                    let line = Line(begin: begin, end: end)
+                    line.lineWidth = 1.0
+                    line.strokeColor = cosmosprpl
+                    line.opacity = 0.4
+                    line.strokeEnd = 0.0
+                    add(subview: line)
+                    currentLineSet.append(line)
+                }
+                lines.append(currentLineSet)
+            }
+        }
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func revealCurrentSignLines() {
+        ViewAnimation(duration: 0.25) {
+            for line in self.currentLines {
+                line.strokeEnd = 1.0
+            }
+        }.animate()
+    }
+    
+    func hideCurrentSignLines() {
+        ViewAnimation(duration: 0.25) {
+            for line in self.currentLines {
+                line.strokeEnd = 0.0
+            }
+        }.animate()
     }
 }

@@ -20,4 +20,23 @@
 import UIKit
 
 public class StarsSmall : InfiniteScrollView {
+    convenience public init(frame: CGRect, speed: CGFloat) {
+        self.init()
+        var signOrder = AstrologicalSignProvider.sharedInstance.order
+        contentSize = CGSize.init(width: frame.width * (1.0 + CGFloat(signOrder.count) * gapBetweenSigns), height: 1.0)
+        signOrder.append(signOrder[0])
+        for i in 0..<signOrder.count {
+            let dx = Double(i) * Double(frame.size.width * speed * gapBetweenSigns)
+            let t = Transform.makeTranslation(translation: Vector(x: Double(center.x) + dx, y: Double(center.y), z: 0.0))
+            if let sign = AstrologicalSignProvider.sharedInstance.get(sign: signOrder[i]) {
+                for point in sign.small {
+                    let img = Image.init("6smallStar")!
+                    var p = point
+                    p.transform(t: t)
+                    img.center = p
+                    add(subview: img)
+                }
+            }
+        }
+    }
 }
