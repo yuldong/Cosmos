@@ -326,6 +326,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a tap gesture.
     /// - returns: A UITapGestureRecognizer that can be customized.
+    @discardableResult
     public func addTapGestureRecognizer(action: @escaping TapAction) -> UITapGestureRecognizer {
         let gestureRecognizer = UITapGestureRecognizer(view: self.view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)
@@ -388,6 +389,7 @@ public class View: NSObject {
     /// ````
     /// - parameter action: A block of code to be executed when the receiver recognizes a longpress gesture.
     /// - returns: A UILongPressGestureRecognizer that can be customized.
+    @discardableResult
     public func addLongPressGestureRecognizer(action: @escaping LongPressAction) -> UILongPressGestureRecognizer {
         let gestureRecognizer = UILongPressGestureRecognizer(view: view, action: action)
         self.view.addGestureRecognizer(gestureRecognizer)

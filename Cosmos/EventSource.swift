@@ -70,6 +70,7 @@ extension NSObject : EventSource {
     /// - parameter event: The notification name to listen for
     /// - parameter run:   A block of code to run when the receiver "hears" the specified event name
     /// - returns: A token to use for cancelling the action.
+    @discardableResult
     public func on(event notificationName: String, run: @escaping () -> Void) -> AnyObject {
         return on(event: notificationName, from: nil, run: run)
     }

@@ -305,7 +305,7 @@ public func inverse(t: Transform) -> Transform? {
     var matrix: [__CLPK_doublereal] = t.matrix
 
     // LU factorisation
-    withUnsafeMutablePointer(to: &N) {
+    let _ = withUnsafeMutablePointer(to: &N) {
         dgetrf_($0, $0, &matrix, $0, &pivot, &error)
     }
     
@@ -315,7 +315,7 @@ public func inverse(t: Transform) -> Transform? {
 
     // matrix inversion
     var workspace = [__CLPK_doublereal](repeating: 0, count: 4)
-    withUnsafeMutablePointer(to: &N) {
+    let _ = withUnsafeMutablePointer(to: &N) {
         dgetri_($0, &matrix, $0, &pivot, &workspace, $0, &error)
     }
     

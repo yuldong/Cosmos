@@ -100,6 +100,7 @@ public class Animation {
     ///  - parameter action: a block of code to be executed at the end of an animation.
     ///
     ///  - returns: the observer object.
+    @discardableResult
     public func addCompletionObserver(action: @escaping () -> Void) -> AnyObject {
         let nc = NotificationCenter.default
         let observer = nc.addObserver(forName: NSNotification.Name(rawValue: AnimationCompletedEvent), object: self, queue: OperationQueue.current, using: { notification in

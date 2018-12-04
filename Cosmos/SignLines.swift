@@ -50,7 +50,7 @@ public class SignLines : InfiniteScrollView {
                     
                     let line = Line(begin: begin, end: end)
                     line.lineWidth = 1.0
-                    line.strokeColor = cosmosprpl
+                    line.strokeColor = C4Pink
                     line.opacity = 0.4
                     line.strokeEnd = 0.0
                     add(subview: line)
