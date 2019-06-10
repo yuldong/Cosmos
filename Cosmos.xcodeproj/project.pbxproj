@@ -99,16 +99,6 @@
 		1F4A80191C8AABBB00BE1307 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4A80181C8AABBB00BE1307 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1F4A7FE21C8AA69400BE1307 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F4A7F321C8AA69400BE1307 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1F4A7F391C8AA69400BE1307;
-			remoteInfo = Cosmos;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1F4A7F3A1C8AA69400BE1307 /* Cosmos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cosmos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4A7F3D1C8AA69400BE1307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,7 +173,6 @@
 		1F4A7FD51C8AA69400BE1307 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F4A7FD71C8AA69400BE1307 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F4A7FDC1C8AA69400BE1307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F4A7FE11C8AA69400BE1307 /* CosmosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CosmosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4A7FF01C8AAA1D00BE1307 /* audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio1.mp3; sourceTree = "<group>"; };
 		1F4A7FF11C8AAA1D00BE1307 /* audio2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio2.mp3; sourceTree = "<group>"; };
 		1F4A7FF21C8AAA1D00BE1307 /* menuClose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menuClose.mp3; sourceTree = "<group>"; };
@@ -213,13 +202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F4A7FDE1C8AA69400BE1307 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -235,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				1F4A7F3A1C8AA69400BE1307 /* Cosmos.app */,
-				1F4A7FE11C8AA69400BE1307 /* CosmosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -430,24 +411,6 @@
 			productReference = 1F4A7F3A1C8AA69400BE1307 /* Cosmos.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1F4A7FE01C8AA69400BE1307 /* CosmosTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1F4A7FED1C8AA69400BE1307 /* Build configuration list for PBXNativeTarget "CosmosTests" */;
-			buildPhases = (
-				1F4A7FDD1C8AA69400BE1307 /* Sources */,
-				1F4A7FDE1C8AA69400BE1307 /* Frameworks */,
-				1F4A7FDF1C8AA69400BE1307 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1F4A7FE31C8AA69400BE1307 /* PBXTargetDependency */,
-			);
-			name = CosmosTests;
-			productName = CosmosTests;
-			productReference = 1F4A7FE11C8AA69400BE1307 /* CosmosTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -455,23 +418,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = C4;
 				TargetAttributes = {
 					1F4A7F391C8AA69400BE1307 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = N6JQ46CTL8;
+						DevelopmentTeam = 7D7KZH52CP;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Manual;
-					};
-					1F4A7FE01C8AA69400BE1307 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 1F4A7F391C8AA69400BE1307;
 					};
 				};
 			};
 			buildConfigurationList = 1F4A7F351C8AA69400BE1307 /* Build configuration list for PBXProject "Cosmos" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -483,7 +443,6 @@
 			projectRoot = "";
 			targets = (
 				1F4A7F391C8AA69400BE1307 /* Cosmos */,
-				1F4A7FE01C8AA69400BE1307 /* CosmosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -501,13 +460,6 @@
 				1F4A7FD61C8AA69400BE1307 /* Main.storyboard in Resources */,
 				1F4A80191C8AABBB00BE1307 /* LaunchScreen.storyboard in Resources */,
 				1F4A7FF51C8AAA1D00BE1307 /* audio1.mp3 in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1F4A7FDF1C8AA69400BE1307 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,22 +555,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F4A7FDD1C8AA69400BE1307 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		1F4A7FE31C8AA69400BE1307 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1F4A7F391C8AA69400BE1307 /* Cosmos */;
-			targetProxy = 1F4A7FE21C8AA69400BE1307 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1F4A7FD41C8AA69400BE1307 /* Main.storyboard */ = {
@@ -738,15 +675,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Honggang Yu (VPLZ36R9Y8)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = N6JQ46CTL8;
+				DEVELOPMENT_TEAM = 7D7KZH52CP;
 				INFOPLIST_FILE = Cosmos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DevelopmentWinfaeCRM;
-				SWIFT_VERSION = 4.2;
+				PROVISIONING_PROFILE_SPECIFIER = winxintou_development;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -754,42 +692,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Honggang Yu (VPLZ36R9Y8)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = N6JQ46CTL8;
+				DEVELOPMENT_TEAM = 7D7KZH52CP;
 				INFOPLIST_FILE = Cosmos/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfae.C;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DevelopmentWinfaeCRM;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
-		1F4A7FEE1C8AA69400BE1307 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = CosmosTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = C4.CosmosTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cosmos.app/Cosmos";
-			};
-			name = Debug;
-		};
-		1F4A7FEF1C8AA69400BE1307 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = CosmosTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = C4.CosmosTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cosmos.app/Cosmos";
+				PROVISIONING_PROFILE_SPECIFIER = winxintou_development;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -810,15 +722,6 @@
 			buildConfigurations = (
 				1F4A7FEB1C8AA69400BE1307 /* Debug */,
 				1F4A7FEC1C8AA69400BE1307 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1F4A7FED1C8AA69400BE1307 /* Build configuration list for PBXNativeTarget "CosmosTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1F4A7FEE1C8AA69400BE1307 /* Debug */,
-				1F4A7FEF1C8AA69400BE1307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

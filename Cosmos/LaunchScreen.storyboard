@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="launchbg" translatesAutoresizingMaskIntoConstraints="NO" id="5xp-fX-8Gy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LoadCOSMOS" translatesAutoresizingMaskIntoConstraints="NO" id="ghN-y3-gsn">
                                 <rect key="frame" x="57" y="298" width="300" height="300"/>
@@ -33,7 +31,7 @@
                             <constraint firstItem="5xp-fX-8Gy" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="IjQ-Zo-4Ag"/>
                             <constraint firstItem="ghN-y3-gsn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Nz5-hn-xpN"/>
                             <constraint firstAttribute="trailing" secondItem="5xp-fX-8Gy" secondAttribute="trailing" id="gao-p5-etX"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5xp-fX-8Gy" secondAttribute="bottom" id="nIs-Xl-0JS"/>
+                            <constraint firstAttribute="bottom" secondItem="5xp-fX-8Gy" secondAttribute="bottom" id="jm7-2A-C1J"/>
                             <constraint firstItem="ghN-y3-gsn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oqC-3Z-GQp"/>
                             <constraint firstItem="5xp-fX-8Gy" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="sVk-Vu-c2c"/>
                         </constraints>

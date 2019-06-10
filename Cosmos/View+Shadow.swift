@@ -80,7 +80,7 @@ public extension View {
     /// v.shadow = s
     /// canvas.add(v)
     /// ````
-    public var shadow: Shadow {
+    var shadow: Shadow {
         get {
             var shadow = Shadow()
             if let layer = layer {

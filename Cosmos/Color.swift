@@ -256,7 +256,7 @@ public class Color {
 public extension UIColor {
     /// Initializes a UIColor object from a Color object.
     /// - parameter color: The C4 color object.
-    public convenience init?(_ color: Color) {
+    convenience init?(_ color: Color) {
         self.init(cgColor: color.color)
     }
 }
@@ -264,7 +264,7 @@ public extension UIColor {
 public extension CIColor {
     /// Initializes a CIColor object from a Color object.
     /// - parameter color: The C4 color object.
-    public convenience init(_ color: Color) {
+    convenience init(_ color: Color) {
         self.init(cgColor: color.color)
     }
 }
