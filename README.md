@@ -5,11 +5,11 @@
 #### 相关链接
 [中文翻译](http://c4ios.swift.gg/)
 
-[Core源代码地址以及介绍](https://github.com/C4Labs/C4iOS)
+[Core源代码地址以及介绍](https://github.com/C4Labs/C4iOS)
 
 [GitHub项目地址](https://github.com/C4Labs/Cosmos)
 
-#### 相关截图
+#### 相关截图
 ![screenshot1](images/1.png)
 ![screenshot2](images/2.png)
 ![screenshot3](images/3.png)
@@ -18,8 +18,9 @@
 **更多等待请你去发现**
 
 #### 几点说明
-- 仓库已将项目代码（core以及项目）升级至swift4.2版本。
-- 未适配iPhone X以及更新型号
-- 仅在iOS11，12版本测试
+- 仓库已将项目代码（core以及项目）升级至swift5.0版本。
+- 适配iPhone X以及更新型号
+- 仅在iOS11，12版本测试
+- iOS13测试通过
 
 
